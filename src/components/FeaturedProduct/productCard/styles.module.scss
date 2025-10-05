@@ -1,0 +1,106 @@
+@use "../../../app/colors.module.scss" as *;
+
+.card {
+  position: relative;
+  background-color: $colorCard;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: $accentBlue;
+    box-shadow: 0 0 20px rgba(10, 132, 255, 0.15);
+    transform: translateY(-4px);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: $textLight;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rating {
+    color: $accentBlue;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    margin-bottom: 1rem;
+
+    .current {
+      color: $accentBlue;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    .old {
+      color: $textLight;
+      text-decoration: line-through;
+      font-size: 0.9rem;
+    }
+  }
+
+  .cartButton {
+    background: $accentBlue;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: lighten($accentBlue, 5%);
+    }
+
+    svg {
+      font-size: 1.1rem;
+    }
+  }
+
+  .newTag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: $accentBlue;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .favorite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: $textLight;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accentBlue;
+    }
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+}
