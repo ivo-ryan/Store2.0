@@ -1,0 +1,71 @@
+@use "../../../app/colors.module.scss" as *;
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  .content {
+    position: absolute;
+    max-width: 600px;
+    padding: 1rem 2rem;
+    z-index: 2;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: $textLight;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $textMuted;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background: $accentBlue;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: ease 0.2s;
+
+      &:hover {
+        background: lighten($accentBlue, 5%);
+      }
+    }
+  }
+
+  .imageWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+
+    img {
+      width: 100%;
+      height: 500px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    text-align: center;
+
+    .content {
+      margin-bottom: 2rem;
+    }
+
+    .imageWrapper img {
+      max-width: 80%;
+    }
+  }
+}

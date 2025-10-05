@@ -1,0 +1,63 @@
+@use "../../../app/colors.module.scss" as *;
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: $colorCard;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  img {
+    width: 300px;
+    max-height: 200px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1.5rem;
+
+    h3 {
+      color: $textLight;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background: $colorCard;
+      color: $textLight;
+      border: 1px solid $colorBorder;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: $accentBlue;
+        color: #fff;
+        border-color: $accentBlue;
+      }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(10, 132, 255, 0.2);
+
+    img {
+      opacity: 1;
+    }
+  }
+}
