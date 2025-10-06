@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $background;
+  background-color: $secondaryDarkBg;
   padding: 1rem 2rem;
   border-bottom: 1px solid $colorBorder;
 
@@ -31,7 +31,8 @@
       background: transparent;
       border: none;
       padding: 0.75rem 1rem;
-      color: $textLight;
+      color: black;
+      font-weight: 600;
       font-size: 1rem;
       outline: none;
     }

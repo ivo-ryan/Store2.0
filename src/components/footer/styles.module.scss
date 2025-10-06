@@ -1,0 +1,119 @@
+@use "../../app/colors.module.scss" as *;
+
+.footer {
+  background-color: $secondaryDarkBg;
+  padding: 3rem 2rem 1rem;
+  color: $textLight;
+  border-top: 1px solid $colorBorder;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    color: $accentBlue;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    color: $textLight;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $textMuted;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        color: $textMuted;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $accentBlue;
+        }
+      }
+    }
+  }
+
+  .newsletter {
+    display: flex;
+    background-color: $colorCard;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1rem 0;
+
+    input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: $textLight;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    button {
+      background: $accentBlue;
+      border: none;
+      padding: 0 1rem;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+
+      &:hover {
+        background: lighten($accentBlue, 5%);
+      }
+
+      svg {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    svg {
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: $textMuted;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $accentBlue;
+      }
+    }
+  }
+
+  .copy {
+    text-align: center;
+    border-top: 1px solid $colorBorder;
+    padding-top: 1rem;
+
+    p {
+      color: $textMuted;
+      font-size: 0.85rem;
+    }
+  }
+}

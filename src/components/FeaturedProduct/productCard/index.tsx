@@ -28,7 +28,7 @@ export default function ProductCard({
         <FiHeart />
       </button>
 
-      <img src={image} alt={name} width={300} height={300} />
+      <img src={image} alt={name} width={300} height={300} className={styles.imgCard} />
 
       <h3>{name}</h3>
 
