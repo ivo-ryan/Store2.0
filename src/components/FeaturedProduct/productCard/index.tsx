@@ -1,26 +1,17 @@
 
+import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
-import Image from "next/image";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 
-interface ProductProps {
-  id: number;
-  name: string;
-  price: number;
-  oldPrice?: number;
-  image: string;
-  rating: number;
-  isNew?: boolean;
-}
 
 export default function ProductCard({
   name,
   price,
   oldPrice,
-  image,
+  images,
   rating,
   isNew,
-}: ProductProps) {
+}: ProductType) {
   return (
     <div className={styles.card}>
       {isNew && <span className={styles.newTag}>NOVO</span>}
@@ -28,7 +19,7 @@ export default function ProductCard({
         <FiHeart />
       </button>
 
-      <img src={image} alt={name} width={300} height={300} className={styles.imgCard} />
+      <img src={images[0].url} alt={name} width={300} height={300} className={styles.imgCard} />
 
       <h3>{name}</h3>
 
@@ -38,8 +29,8 @@ export default function ProductCard({
       </div>
 
       <div className={styles.price}>
-        <span className={styles.current}>${price.toFixed(2)}</span>
-        {oldPrice && <span className={styles.old}>${oldPrice.toFixed(2)}</span>}
+        <span className={styles.current}>R$ {Number(price).toFixed(2)}</span>
+        {oldPrice && <span className={styles.old}>R$ {Number(oldPrice).toFixed(2)}</span>}
       </div>
 
       <button className={styles.cartButton}>
