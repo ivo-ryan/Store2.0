@@ -1,7 +1,6 @@
-@use "../../../app/colors.module.scss" as *;
+@use "../../app/colors.module.scss" as *;
 
 .featured {
-  background-color: $background;
   padding: 3rem 2rem;
 
   h2 {
@@ -14,5 +13,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
+  }
+  
+  :global(.swiper) {
+    padding-top: 10px;
+    height: 400px;
   }
 }

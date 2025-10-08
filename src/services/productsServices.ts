@@ -46,9 +46,18 @@ export const productsService = {
         return res;
     },
 
-    getProductById: async (id: number) => {
+    getProductById: async (id: string) => {
         const res = await api.get(`/products/${id}`).catch((error) => {
             console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res
+    },
+
+    categoryProduct: async (id: string) => {
+        const res = await api.get(`/categories/${id}`).catch((error) => {
+            console.log(error.response.data);
             return error.response;
         });
 

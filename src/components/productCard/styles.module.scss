@@ -1,4 +1,4 @@
-@use "../../../app/colors.module.scss" as *;
+@use "../../app/colors.module.scss" as *;
 
 .card {
   position: relative;
@@ -18,7 +18,8 @@
 
   .imgCard {
     width: 100%;
-    height: 200px;
+    object-fit: contain;
+    height: 150px;
     margin-bottom: 1rem;
   }
 
