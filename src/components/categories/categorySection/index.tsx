@@ -24,7 +24,8 @@ export default function CategoriesSection() {
   ];
 
   const handleClick = (id: string) => {
-    sessionStorage.setItem('category', `${id}`)
+    sessionStorage.setItem('category', `${id}`);
+    window.dispatchEvent(new Event("categoryChange"));
   }
 
   return (

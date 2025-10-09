@@ -5,35 +5,6 @@
     background: linear-gradient(circle , #000 , transparent);
 }
 
-.headerSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    z-index: 2;
-    background-color: transparent;
-    padding: 0.75rem 2rem;
-
-    ul {
-        display: flex;
-        list-style: none;
-
-        li a {
-        color: $textMuted;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-        padding: 10px;
-
-        &:hover {
-            color: $textLight ;
-            background-color: $accentBlue;
-        }
-        }
-    }
-}
 
 .backgroundImg{
     width: 100%;
