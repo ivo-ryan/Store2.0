@@ -1,19 +1,35 @@
 "use client"
 
 import { productsService, ProductType } from "@/services/productsServices";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 export default function useCategory() {
-    const [categoryId, setCategoryId] = useState<string | null>(null);
     const [products, setProducts] = useState<ProductType[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const fetchProducts = async (id: string) => {
+        setLoading(true);
+        try{
+            const res = await productsService.categoryProduct(id);
+            setProducts(res.data.products);
+        }
+        finally{
+            setLoading(false)
+        }
+    }
+
     const updateCategory = () => {
         const stored = sessionStorage.getItem("category");
-        setCategoryId(stored);
-    };
 
-    useEffect(() => {
+        if(stored){
+            fetchProducts(stored);
+        }else{
+            setProducts([]);
+            setLoading(false)
+        }
+    }
+
+    useLayoutEffect(() => {
         updateCategory();
         window.addEventListener("categoryChange", updateCategory);
         return () => {
@@ -22,30 +38,6 @@ export default function useCategory() {
     }, []);
 
 
-    useEffect(() => {
-        if (!categoryId) {
-            setProducts([]);
-            setCategoryId(null);
-            setLoading(false);
-            return ;
-        };
-
-        let active = true
-
-        const categoryProducts = async () => {
-            setLoading(true);
-            const res = await productsService.categoryProduct(categoryId);
-            if(!active) return;
-            setProducts(res.data.products);
-            setLoading(false);
-        }
-
-        categoryProducts();
-
-        return () => {
-            active = false
-        }
-    }, [categoryId]);
 
     return {
         loading,

@@ -3,14 +3,35 @@
 import { productsService, ProductType } from "@/services/productsServices"
 import { useEffect, useState } from "react"
 
+interface props {
+    data: ProductType
+}
+
 export default function useProduct (){
-    const [ product , setProduct ] = useState<ProductType | {} >({});
-    const [ productId, setProductId ] = useState<string | null>(null);
+    const [ product , setProduct ] = useState<ProductType[] >([]);
     const [ loading , setLoading ] = useState(true);
+
+    const fetchProduct = async (id: string) => {
+        setLoading(true);
+        try {
+            const res:props = await productsService.getProductById(id);
+            console.log(res)
+            sessionStorage.setItem("category", `${String(res.data.categoryId)}`);
+            setProduct([res.data]);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     const updateProduct = () => {
         const stored = sessionStorage.getItem("product");
-        setProductId(stored);
+        if(stored){
+            fetchProduct(stored);
+
+        }else{
+            setProduct([]);
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
@@ -20,23 +41,6 @@ export default function useProduct (){
         window.removeEventListener("productChange", updateProduct);
        };
     }, []);
-
-    useEffect(() => {
-        if(!productId){
-            setProduct({});
-            setLoading(false);
-            return;
-        };
-
-        const fetchData = async () => {
-            setLoading(true);
-            const res = await productsService.getProductById(productId);
-            setProduct(res.data);
-            setLoading(false);
-        }
-
-        fetchData();
-    }, [productId]);
 
 
     return {
