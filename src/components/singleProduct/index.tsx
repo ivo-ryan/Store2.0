@@ -22,7 +22,7 @@ export default function SingleProduct() {
 
     return (
         <section className={styles.sectionContainer}>
-            <div className={styles.container}>
+            <div className={styles.containerHeader}>
                 <div>
                 <HeaderNav/>
                 </div>
@@ -62,9 +62,9 @@ export default function SingleProduct() {
                     {"☆".repeat(5 - product[0].rating)}
                     </div>
 
-                    <div className={styles.price}>
-                        <span className={styles.current}>R$ {product[0].price}</span>
-                        {product[0].oldPrice && <span className={styles.old}>R$ {product[0].oldPrice} </span>}
+                     <div className={styles.price}>
+                        <span className={styles.current}>R$ {Number(product[0].price).toFixed(2)}</span>
+                        {product[0].oldPrice && <span className={styles.old}>R$ {Number(product[0].oldPrice).toFixed(2)}</span>}
                     </div>
 
                    <div className={styles.containerButton}>
@@ -80,11 +80,13 @@ export default function SingleProduct() {
                 </div>
             </div>
 
-            <FeatureProduct descricao={product[0].description}  especificacoes={product[0].mark}/>
+            <div className={styles.container}>
+                <FeatureProduct descricao={product[0].description}  especificacoes={product[0].mark}/>
+            </div>
 
             <h2>Produtos Relacionados:</h2>
 
-            <CategoryProducts/>
+            <CategoryProducts productId={product[0].id}/>
 
 
         </section>

@@ -3,9 +3,6 @@
 import { productsService, ProductType } from "@/services/productsServices"
 import { useEffect, useState } from "react"
 
-interface props {
-    data: ProductType
-}
 
 export default function useProduct (){
     const [ product , setProduct ] = useState<ProductType[] >([]);
@@ -14,15 +11,13 @@ export default function useProduct (){
     const fetchProduct = async (id: string) => {
         setLoading(true);
         try {
-            const res:props = await productsService.getProductById(id);
-            console.log(res)
-            sessionStorage.setItem("category", `${String(res.data.categoryId)}`);
+            const res = await productsService.getProductById(id);
             setProduct([res.data]);
         } finally {
             setLoading(false);
         }
     }
-
+    
     const updateProduct = () => {
         const stored = sessionStorage.getItem("product");
         if(stored){
@@ -32,7 +27,7 @@ export default function useProduct (){
             setProduct([]);
             setLoading(false)
         }
-    }
+    };
 
     useEffect(() => {
        updateProduct();

@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import styles from "./styles.module.scss";
 import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
 
@@ -17,7 +18,7 @@ export default function HeaderTop() {
       </div>
 
       <div className={styles.icons}>
-        <FiUser />
+       <Link href="/login"> <FiUser /></Link>
         <FiHeart />
         <FiShoppingCart />
       </div>

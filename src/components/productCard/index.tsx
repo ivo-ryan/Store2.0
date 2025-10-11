@@ -14,13 +14,16 @@ export default function ProductCard({
   images,
   rating,
   isNew,
-  id
+  id,
+  categoryId
 }: ProductType)
 {
 
 
-  const handleClick = ( id: string ) => {
-    sessionStorage.setItem("product", `${id}`)
+  const handleClick = ( id: string , categoryId: string) => {
+    sessionStorage.setItem("product", `${id}`);
+    sessionStorage.setItem("category", `${categoryId}`);
+    window.dispatchEvent(new Event("productChange"));
   }
 
   return (
@@ -30,7 +33,7 @@ export default function ProductCard({
         <FiHeart />
       </button>
       
-      <Link href="/product" onClick={() => handleClick(String(id))}>
+      <Link href="/product" onClick={() => handleClick(String(id), String(categoryId))}>
           
         <img src={images[0].url} alt={name} width={300} height={300} className={styles.imgCard} />
 
