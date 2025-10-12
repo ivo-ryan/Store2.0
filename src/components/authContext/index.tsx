@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { userService } from "@/services/userService";
 
@@ -10,6 +10,7 @@ interface AuthContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  registerUser: (name: string, email: string, password: string) => Promise<{register: boolean}>
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -61,8 +62,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.push("/login");
   };
 
+  const registerUser = async  (name: string , email: string, password: string) => {
+    const res = await userService.register(name, email, password);
+
+    const data = res.data
+
+    console.log(res)
+
+    if(res.status !== 201 ){
+      throw new Error("Credenciais inválidas");
+    }
+
+    return { register: true }
+
+  }
+
   return (
-    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout , registerUser}}>
       {children}
     </AuthContext.Provider>
   );
