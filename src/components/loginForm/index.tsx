@@ -59,7 +59,7 @@ export default function LoginPage() {
 
         {error && <p className={styles.error}>{error}</p>}
 
-        <div className={styles.isResgisted} onClick={() => setIsRegisted(true)}>
+        <div className={styles.isRegisted} onClick={() => setIsRegisted(true)}>
             <p className={styles.register}>Ainda não sou cadastrado</p>
         </div>
 

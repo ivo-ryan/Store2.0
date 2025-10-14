@@ -8,9 +8,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import styles from "./styles.module.scss";
 
 const schema = z.object({
-    name: z.string().min(4 , "Nome inválido"),
-    email: z.email().min(6, "Email inválido"),
-    password: z.string().min(4, "Senha inválida")
+    name: z.string().min(4 , "Nome deve ter no mínimo 4 caracteres!"),
+    email: z.email("Email inválido!"),
+    password: z.string().min(4, "Senha deve ter no mínimo 4 caracteres!")
 });
 
 export type FormDataProps = z.infer<typeof schema>;
@@ -47,10 +47,10 @@ export default function RegisterForm ({ setIsRegisted }:props ) {
     return (
         <div className={styles.containerForm}>
 
-            <h2 className={styles.title}>Cadastre se</h2>
             <form action="submit" method="post" onSubmit={handleSubmit(handleFormSubmit)} 
                className={styles.form}
             >
+            <h2 className={styles.title}>Cadastre se</h2>
 
                 <div className={styles.inputContainer}>
 

@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, password: string) => {
     try {
       const res = await userService.login(email, password);
-      console.log(res)
 
       const data = await res.data;
 
@@ -64,10 +63,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const registerUser = async  (name: string , email: string, password: string) => {
     const res = await userService.register(name, email, password);
-
-    const data = res.data
-
-    console.log(res)
 
     if(res.status !== 201 ){
       throw new Error("Credenciais inválidas");

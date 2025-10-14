@@ -5,6 +5,8 @@ import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import Link from "next/link";
+import { useAuth } from "../customComponents/useAuth";
+import { userService } from "@/services/userService";
 
 
 export default function ProductCard({
@@ -19,6 +21,7 @@ export default function ProductCard({
 }: ProductType)
 {
 
+  const { user } = useAuth();
 
   const handleClick = ( id: string , categoryId: string) => {
     sessionStorage.setItem("product", `${id}`);
@@ -26,10 +29,18 @@ export default function ProductCard({
     window.dispatchEvent(new Event("productChange"));
   }
 
+  const handleClickFavorite = async  () => {
+      if(!user?.email) return 
+
+      const userExists = await userService.getUser(user.email);
+
+      return userExists
+  }
+
   return (
     <div className={styles.card}  >
       {isNew && <span className={styles.newTag}>NOVO</span>}
-      <button className={styles.favorite}>
+      <button className={styles.favorite} onClick={() => handleClickFavorite()}>
         <FiHeart />
       </button>
       

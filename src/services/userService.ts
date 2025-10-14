@@ -24,5 +24,17 @@ export const userService = {
         });
 
         return res;
+    },
+
+    getUser: async (email: string) => {
+        const res = await api.post("/users/email", {
+            email
+        
+        }).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res;
     }
 }

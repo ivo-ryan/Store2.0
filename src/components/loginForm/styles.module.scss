@@ -9,16 +9,20 @@
 
 .form {
   background-color: $textLight;
-  padding: 2rem;
-  border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem ;
+  gap: .5rem;
+
 
   h2 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: $accentBlue;
+    color: $colorPrimary;
   }
 
   .field {
@@ -27,16 +31,28 @@
     margin-bottom: 1rem;
 
     label {
-      font-weight: 500;
       margin-bottom: 0.3rem;
     }
 
-    input {
-      padding: 0.7rem;
-      border: 1px solid $grayLight;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-    }
+      input{
+            outline: none;
+            border: 1px solid #6A0DAD;
+            border-radius: .5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: $background;
+            transition: all .5s ease;
+            padding: 1rem;
+        
+            &::placeholder{
+                color: #fff;
+            }
+
+            &:focus{
+                outline: 1px solid #8c75a6;
+                
+            }
+
+        }
 
     span {
       color: $error;
@@ -51,25 +67,48 @@
     margin-bottom: 1rem;
   }
 
-  button {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: $accentBlue;
-    color: $textLight;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  button{
+        border: none;
+        width: 100%;
+        font-weight: 700;
+        border-radius: .5rem;
+        background-color: #28a745;
+        cursor: pointer;
+        color: #fff;
+        padding: 1rem 0;
+        transition: all .5s ease;
 
-    &:hover {
-      background-color: darken($accentBlue, 5%);
+        &:hover {
+            background-color: #218838;
+            transform: scale(1.05); 
+        }
+
+        &:active {
+            background-color: #1e7e34; 
+            transform: scale(1);
+        }
+
+        &:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed; 
+        }
     }
 
-    &:disabled {
-      background-color: $grayLight;
-      cursor: not-allowed;
+  .isRegisted{
+    padding: 10px 0 ;
+
+    .register{
+      display: inline-block;
+      color: $colorPrimary;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
+
+      &:hover{
+        border-bottom: 1px solid $colorPrimary;
+      }
     }
+
   }
 }
 

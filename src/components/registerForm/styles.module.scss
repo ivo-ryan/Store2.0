@@ -9,14 +9,6 @@
     margin-top: 2.5rem;
 }
 
-.title{
-    width: 30%;
-    padding: 10px ;
-    color: $textMuted;
-    background-color: $textLight;
-
-}
-
 .form{
 
     display: flex;
@@ -28,8 +20,18 @@
     text-align: left;
     background: #ffffff; 
 
+    .title{
+        text-align: center;
+        width: 100%;
+        padding: 10px ;
+        color: $colorPrimary;
+        background-color: $textLight;
+
+    }
+
     .inputContainer{
         display: flex;
+        width: 70%;
         flex-direction: column;
         margin-bottom: 5px;
 
@@ -69,7 +71,7 @@
 
     .button{
         border: none;
-        width: 200px;
+        width: 70%;
         font-weight: 700;
         border-radius: .5rem;
         background-color: #28a745;
@@ -95,8 +97,10 @@
     }
 
     .back{
+        width: 100%;
         padding: 10px 0;
         cursor: pointer;
+        text-align: center;
 
         button{
             @extend .button;
