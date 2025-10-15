@@ -1,4 +1,4 @@
-import { api } from "./api"
+import { publicApi } from "./api"
 
 export type ProductType = {
     name: string;
@@ -24,7 +24,7 @@ export type ProductType = {
 
 export const productsService = {
     getAll: async () => {
-       const res = await api.get("/products", {
+       const res = await publicApi.get("/products", {
             params: {
                 pageSize: 30,
                 page: 1
@@ -38,7 +38,7 @@ export const productsService = {
     },
 
     getNewest: async () => {
-        const res = await api.get("/products/newest").catch((error) => {
+        const res = await publicApi.get("/products/newest").catch((error) => {
             console.log(error.response.data.message);
             return error.response;
         });
@@ -47,7 +47,7 @@ export const productsService = {
     },
 
     getProductById: async (id: string) => {
-        const res = await api.get(`/products/${id}`).catch((error) => {
+        const res = await publicApi.get(`/products/${id}`).catch((error) => {
             console.log(error.response.data.message);
             return error.response;
         });
@@ -56,7 +56,7 @@ export const productsService = {
     },
 
     categoryProduct: async (id: string) => {
-        const res = await api.get(`/categories/${id}`).catch((error) => {
+        const res = await publicApi.get(`/categories/${id}`).catch((error) => {
             console.log(error.response.data);
             return error.response;
         });
