@@ -38,6 +38,15 @@ export const userService = {
         return res;
     },
 
+    getAllFavorites: async () => {
+        const res = await privateApi.get("/favorites").catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res
+    },
+
     addFavoriteProduct: async ( productId: number) => {
         const res = await privateApi.post("/favorites" ,
             {productId}

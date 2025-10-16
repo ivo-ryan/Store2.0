@@ -19,7 +19,7 @@ export default function HeaderTop() {
 
       <div className={styles.icons}>
        <Link href="/login"> <FiUser /></Link>
-        <FiHeart />
+        <Link href="/favorites"><FiHeart /></Link>
         <FiShoppingCart />
       </div>
     </div>

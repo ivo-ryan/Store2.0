@@ -18,15 +18,19 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<{ email: string } | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [ loading, setLoading ] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("token");
-    const storedUser = sessionStorage.getItem("user");
+    const token = sessionStorage.getItem("token");
+    const userJson = sessionStorage.getItem("user");
 
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
+    if (token) {
+      setToken(token);
+    }
+
+    if (token && userJson) {
+      setUser(JSON.parse(userJson));
     }
   }, []);
 
@@ -70,6 +74,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return { register: true }
 
+  }
+
+  if (loading) {
+    return <p>Carregando sessão...</p>;
   }
 
   return (
