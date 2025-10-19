@@ -1,23 +1,33 @@
 "use client"
 
 import useFavorites from "../customComponents/useFavorites";
+import ProductCard from "../productCard";
 import styles from "./styles.module.scss";
 
 export default function FavoritesProducts () {
 
-    const stored = sessionStorage.getItem("token");
-
-    console.log(stored);
-
-    if(!stored) return <p> Usuário não logado! </p>
     
-    const { favorites } = useFavorites();
+    const { favorites , loading } = useFavorites();
 
-    console.log(favorites)
-
+    const products = favorites.map(p => p.product);
+    console.log(products)
     return (
         <>
+        
+            {
+                loading ? <p>Página carregando</p> :
+                
+                <div className={styles.grid}>
 
+                    <ProductCard {...products[0]} />
+
+                {/* {
+                    products.map(p => (
+                        <ProductCard key={p.id} {...p }/>
+                    ))
+                } */}
+            </div>
+            }
         </>
     )
 }

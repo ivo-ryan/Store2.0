@@ -1,4 +1,13 @@
 import { privateApi, publicApi } from "./api"
+import { ProductType } from "./productsServices";
+
+export type FavoriteProductType = {
+    createdAt: string;
+    product: ProductType;
+    productId: number;
+    updatedAt: string;
+    userId: number;
+}
 
 export const userService = {
     login: async (email: string, password: string) => {

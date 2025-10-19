@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
@@ -27,9 +26,7 @@ export default function ProductCard({
   }
 
   const handleClickFavorite = async  (productId: number) => {
-
      const res = await userService.addFavoriteProduct(productId);
-
      console.log(res);
   }
 

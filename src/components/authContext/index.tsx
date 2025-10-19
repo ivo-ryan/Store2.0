@@ -16,27 +16,32 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<{ email: string } | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [ loading, setLoading ] = useState<boolean>(true);
+  const [ user, setUser ] = useState<{ email: string } | null>(null);
+  const [ loading, setLoading ] = useState<boolean>(false);
+  const [ token, setToken ] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false); 
   const router = useRouter();
 
+
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    const userJson = sessionStorage.getItem("user");
+        setIsMounted(true);
+        const token = sessionStorage.getItem("token");
+        const userJson = sessionStorage.getItem("user");
+        if (token) {
+          setToken(token);
+        }
+    
+        if (token && userJson) {
+          setUser(JSON.parse(userJson));
+        }
 
-    if (token) {
-      setToken(token);
-    }
-
-    if (token && userJson) {
-      setUser(JSON.parse(userJson));
-    }
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
+      setLoading(true);
       const res = await userService.login(email, password);
+      setLoading(false);
 
       const data = await res.data;
 
@@ -66,7 +71,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const registerUser = async  (name: string , email: string, password: string) => {
+    setLoading(true);
     const res = await userService.register(name, email, password);
+    setLoading(false)
 
     if(res.status !== 201 ){
       throw new Error("Credenciais inválidas");
@@ -76,7 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   }
 
-  if (loading) {
+  if (!isMounted) {
     return <p>Carregando sessão...</p>;
   }
 
