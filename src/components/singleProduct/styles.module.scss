@@ -144,6 +144,11 @@
         font-size: 1.5rem;
         }
   }
+
+  .isFavorite{
+    @extend .favorite;
+    color: $accentBlue;
+  }
     
 }
 

@@ -67,12 +67,19 @@ export const userService = {
         return res
     },
 
-    removeFavoriteProduct: async ( productId: number) => {
-        const res = await privateApi.delete("/favorites", {
-            data: {
-                productId
-            }
+    getFavoriteProduct: async ( productId: number ) => {
+        const res = await privateApi.post("/favorites/product", {
+            productId
         }).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res.data;
+    },
+
+    removeFavoriteProduct: async ( productId: number) => {
+        const res = await privateApi.delete(`/favorites/${productId}`).catch((error) => {
             console.log(error.response.data.message);
             return error.response;
         });

@@ -1,0 +1,11 @@
+.grid {
+    padding: 2rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .loadingContainer{
+    width: 100%;
+    height: 60vh;
+  }

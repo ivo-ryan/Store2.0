@@ -15,18 +15,17 @@ export default function FavoritesProducts () {
         <>
         
             {
-                loading ? <p>Página carregando</p> :
+                loading ? <div className={styles.loadingContainer}> <p>Página carregando</p> </div> :
                 
                 <div className={styles.grid}>
 
-                    <ProductCard {...products[0]} />
+                    {
+                        products.map(p => (
+                            <ProductCard key={p.id} {...p }/>
+                        ))
+                    }
 
-                {/* {
-                    products.map(p => (
-                        <ProductCard key={p.id} {...p }/>
-                    ))
-                } */}
-            </div>
+                </div>
             }
         </>
     )

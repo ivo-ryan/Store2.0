@@ -5,6 +5,8 @@ import styles from "./styles.module.scss";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import Link from "next/link";
 import { userService } from "@/services/userService";
+import { useEffect, useState } from "react";
+import { FaHeart } from "react-icons/fa";
 
 
 export default function ProductCard({
@@ -19,6 +21,9 @@ export default function ProductCard({
 }: ProductType)
 {
 
+  const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
+  const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
+
   const handleClick = ( id: string , categoryId: string) => {
     sessionStorage.setItem("product", `${id}`);
     sessionStorage.setItem("category", `${categoryId}`);
@@ -26,16 +31,46 @@ export default function ProductCard({
   }
 
   const handleClickFavorite = async  (productId: number) => {
-     const res = await userService.addFavoriteProduct(productId);
-     console.log(res);
+     await userService.addFavoriteProduct(productId);
+     setFavoritesChange(prev => !prev);
   }
+
+  const handleClickRemoveFavorite = async ( productId: number ) => {
+     await userService.removeFavoriteProduct(productId);
+    setFavoritesChange(prev => !prev);
+  }
+
+  useEffect(() => {
+
+    const storedUser = sessionStorage.getItem("user");
+  
+    if(storedUser){
+      const productFavorite = async (id: number) => {
+        const res = await userService.getFavoriteProduct(id);
+        setProductIsFavorite(!!res);
+      }
+    
+      productFavorite(id); 
+  
+    }
+  }, [favoritesChange]);
+
+
 
   return (
     <div className={styles.card}  >
       {isNew && <span className={styles.newTag}>NOVO</span>}
-      <button className={styles.favorite} onClick={() => handleClickFavorite(id)}>
-        <FiHeart />
-      </button>
+
+      {
+        productIsFavorite ? 
+          <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(id)}>
+            <FaHeart />
+          </button> 
+        : 
+          <button className={styles.favorite} onClick={() => handleClickFavorite(id)}>
+            <FiHeart />
+          </button>
+      }
       
       <Link href="/product" onClick={() => handleClick(String(id), String(categoryId))}>
           

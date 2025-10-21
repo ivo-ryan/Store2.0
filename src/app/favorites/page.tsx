@@ -11,7 +11,9 @@ export default function Page()  {
             <HeaderTop/>
             
             <div className={styles.containerHeader}>
-                <HeaderNav/>
+                <div>
+                    <HeaderNav/>
+                </div>
             </div>
 
             <FavoritesProducts/>
