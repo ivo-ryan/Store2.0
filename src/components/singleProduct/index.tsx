@@ -11,43 +11,12 @@ import "swiper/css/pagination";
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
-import { useEffect, useState } from "react";
-import { userService } from "@/services/userService";
 import { FaHeart } from "react-icons/fa";
 
 
 
 export default function SingleProduct() {
-    const { loading, product } = useProduct();
-    const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
-    const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
-
-    const handleClickFavorite = async  (productId: number) => {
-    await userService.addFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
-    }
-
-    const handleClickRemoveFavorite = async ( productId: number ) => {
-        await userService.removeFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
-    }
-
-    console.log(product)
-
-    useEffect(() => {
-
-    const storedUser = sessionStorage.getItem("user");
-  
-    if(storedUser ){
-        const productFavorite = async (id: number) => {
-            const res = await userService.getFavoriteProduct(id);
-            setProductIsFavorite(!!res);
-        }
-        
-            productFavorite(product[0].id); 
-    
-        }
-    }, [favoritesChange]);
+    const { loading, product ,handleClickFavorite, handleClickRemoveFavorite, productIsFavorite} = useProduct();
 
 
     if(loading) return <p>Carregando...</p>

@@ -1,6 +1,7 @@
 "use client"
 
 import { productsService, ProductType } from "@/services/productsServices"
+import { userService } from "@/services/userService";
 import { useEffect, useState } from "react"
 
 
@@ -8,6 +9,21 @@ export default function useProduct (){
     const [ product , setProduct ] = useState<ProductType[] >([]);
     const [ loading , setLoading ] = useState(true);
 
+    const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
+    const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
+
+    const handleClickFavorite = async  (productId: number) => {
+    await userService.addFavoriteProduct(productId);
+    setFavoritesChange(prev => !prev);
+    }
+
+    const handleClickRemoveFavorite = async ( productId: number ) => {
+        await userService.removeFavoriteProduct(productId);
+    setFavoritesChange(prev => !prev);
+    }
+
+
+    
     const fetchProduct = async (id: string) => {
         setLoading(true);
         try {
@@ -22,24 +38,44 @@ export default function useProduct (){
         const stored = sessionStorage.getItem("product");
         if(stored){
             fetchProduct(stored);
-
+            
         }else{
             setProduct([]);
             setLoading(false)
         }
     };
-
+    
     useEffect(() => {
-       updateProduct();
-       window.addEventListener("productChange", updateProduct);
-       return () => {
-        window.removeEventListener("productChange", updateProduct);
-       };
+        updateProduct();
+        window.addEventListener("productChange", updateProduct);
+        return () => {
+            window.removeEventListener("productChange", updateProduct);
+        };
     }, []);
 
+     useEffect(() => {
+    const storedUser = sessionStorage.getItem("user")
+
+    if (!storedUser || product.length === 0) return
+
+    const productFavorite = async (id: number) => {
+      try {
+        setLoading(true)
+        const res = await userService.getFavoriteProduct(id)
+        setProductIsFavorite(!!res)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    productFavorite(product[0].id)
+  }, [favoritesChange, product[0]?.id])
 
     return {
         product,
-        loading
+        loading,
+        productIsFavorite,
+        handleClickFavorite,
+        handleClickRemoveFavorite,
     }
 }
