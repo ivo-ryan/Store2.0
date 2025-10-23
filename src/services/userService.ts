@@ -85,5 +85,29 @@ export const userService = {
         });
 
         return res
+    },
+
+    getProductsInCart: async () => {
+        const res = await privateApi.get("/cart").catch((error) => {
+            console.log(error.response.message);
+            return error.response;
+        });
+
+        return res.data;
+    },
+
+    addProductInCart: async (productId: number, change: number) => {
+        const res = await privateApi.post("cart/products", {
+            productId,
+            change
+        }).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+        return res.data;
+    },
+
+    deleteProductInCart: async () => {
+        
     }
 }
