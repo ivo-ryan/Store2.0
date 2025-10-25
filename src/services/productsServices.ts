@@ -33,6 +33,7 @@ export const productsService = {
             console.log(error.response.data.message);
             return error.response;
         });
+        console.log(res)
 
         return res
     },

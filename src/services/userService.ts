@@ -97,7 +97,7 @@ export const userService = {
     },
 
     addProductInCart: async (productId: number, change: number) => {
-        const res = await privateApi.post("cart/products", {
+        const res = await privateApi.post("/cart/products", {
             productId,
             change
         }).catch((error) => {
@@ -107,7 +107,12 @@ export const userService = {
         return res.data;
     },
 
-    deleteProductInCart: async () => {
-        
+    deleteProductInCart: async (id: string) => {
+        const res = await privateApi.delete(`/cart/products/${id}`).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res
     }
 }

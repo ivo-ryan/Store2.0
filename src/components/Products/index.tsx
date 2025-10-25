@@ -9,7 +9,7 @@ interface props {
 export default function  Products ({ products }: props){
 
     const productsFilter = products.filter(p => !p.featured );
-
+    
     return  (
         <section className={styles.sectionContainer}>
 

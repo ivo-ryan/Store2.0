@@ -22,7 +22,12 @@ export default function useProduct (){
     setFavoritesChange(prev => !prev);
     }
 
-
+    
+  const handleClickProduct = ( id: string , categoryId: string) => {
+    sessionStorage.setItem("product", `${id}`);
+    sessionStorage.setItem("category", `${categoryId}`);
+    window.dispatchEvent(new Event("productChange"));
+  }
     
     const fetchProduct = async (id: string) => {
         setLoading(true);
@@ -77,5 +82,6 @@ export default function useProduct (){
         productIsFavorite,
         handleClickFavorite,
         handleClickRemoveFavorite,
+        handleClickProduct
     }
 }
