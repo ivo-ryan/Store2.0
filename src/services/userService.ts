@@ -67,18 +67,16 @@ export const userService = {
         return res
     },
 
-    getFavoriteProduct: async ( productId: number ) => {
-        const res = await privateApi.post("/favorites/product", {
-            productId
-        }).catch((error) => {
+    getFavoriteProduct: async ( productId: string ) => {
+        const res = await privateApi.get(`/favorites/${productId}`).catch((error) => {
             console.log(error.response.data.message);
             return error.response;
         });
 
-        return res.data;
+        return res;
     },
 
-    removeFavoriteProduct: async ( productId: number) => {
+    removeFavoriteProduct: async ( productId: string) => {
         const res = await privateApi.delete(`/favorites/${productId}`).catch((error) => {
             console.log(error.response.data.message);
             return error.response;

@@ -4,10 +4,11 @@ import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import Link from "next/link";
-import { userService } from "@/services/userService";
-import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import useProduct from "../customComponents/useProduct";
+import useCart from "../customComponents/useCart";
+import { useEffect, useState } from "react";
+import { userService } from "@/services/userService";
 
 
 export default function ProductCard({
@@ -22,7 +23,27 @@ export default function ProductCard({
 }: ProductType)
 {
 
-  const { handleClickFavorite, handleClickProduct, handleClickRemoveFavorite, productIsFavorite } = useProduct();
+  const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
+
+  const { handleClickFavorite, handleClickProduct, handleClickRemoveFavorite , favoritesChange} = useProduct();
+  const { handleClickAddProductInCart } = useCart();
+
+const storedUser = sessionStorage.getItem("user")
+
+    if (!storedUser ) return
+
+    const productFavorite = async () => {
+        const res = await userService.getFavoriteProduct(String(id));
+        console.log(res)
+        if(res.data !== null) setProductIsFavorite(true);
+        else setProductIsFavorite(false);
+    }
+
+    
+    useEffect(() => {
+      
+      productFavorite();
+    }, [favoritesChange]);
 
 
   return (
@@ -57,7 +78,7 @@ export default function ProductCard({
         </div>
       </Link>
 
-      <button className={styles.cartButton}>
+      <button className={styles.cartButton} onClick={() => handleClickAddProductInCart(id)}>
         <FiShoppingCart />
         Adicionar ao Carrinho
       </button>

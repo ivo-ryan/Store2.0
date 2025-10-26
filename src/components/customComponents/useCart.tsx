@@ -1,8 +1,7 @@
 "use client";
 
-import { ProductType } from "@/services/productsServices";
 import { userService } from "@/services/userService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useCart (){
 
@@ -36,7 +35,6 @@ export default function useCart (){
         try{
             setLoading(true);
             const res = await userService.getProductsInCart();
-            console.log(res);
             setProducts(res);
 
         }finally{
@@ -44,6 +42,10 @@ export default function useCart (){
         }
 
     }
+
+    useEffect(() => {
+        findAllProductsInCart();
+    }, [])
 
 
     

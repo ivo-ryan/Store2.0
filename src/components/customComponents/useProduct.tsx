@@ -13,13 +13,13 @@ export default function useProduct (){
     const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
 
     const handleClickFavorite = async  (productId: number) => {
-    await userService.addFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
+      await userService.addFavoriteProduct(productId);
+      setFavoritesChange(prev => !prev);
     }
 
     const handleClickRemoveFavorite = async ( productId: number ) => {
-        await userService.removeFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
+      await userService.removeFavoriteProduct(String(productId));
+      setFavoritesChange(prev => !prev);
     }
 
     
@@ -66,7 +66,7 @@ export default function useProduct (){
     const productFavorite = async (id: number) => {
       try {
         setLoading(true)
-        const res = await userService.getFavoriteProduct(id)
+        const res = await userService.getFavoriteProduct(String(id))
         setProductIsFavorite(!!res)
       } finally {
         setLoading(false)
@@ -80,6 +80,7 @@ export default function useProduct (){
         product,
         loading,
         productIsFavorite,
+        favoritesChange,
         handleClickFavorite,
         handleClickRemoveFavorite,
         handleClickProduct
