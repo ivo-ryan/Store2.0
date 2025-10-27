@@ -12,11 +12,14 @@ import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import { FaHeart } from "react-icons/fa";
+import useFavorite from "../customComponents/useFavorite";
 
 
 
 export default function SingleProduct() {
-    const { loading, product ,handleClickFavorite, handleClickRemoveFavorite, productIsFavorite} = useProduct();
+    const { loading, product } = useProduct();
+    const idProduct = loading ? String(product[0]?.id) : '';
+    const { handleClickFavorite,handleClickRemoveFavorite, productIsFavorite } = useFavorite(idProduct);
 
 
     if(loading) return <p>Carregando...</p>
@@ -54,7 +57,7 @@ export default function SingleProduct() {
 
                 {
                     productIsFavorite ? 
-                    <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(product[0].id)}>
+                    <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(String(product[0].id))}>
                         <FaHeart />
                     </button> 
                     : 

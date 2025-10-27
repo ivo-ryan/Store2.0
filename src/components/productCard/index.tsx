@@ -7,8 +7,7 @@ import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 import useProduct from "../customComponents/useProduct";
 import useCart from "../customComponents/useCart";
-import { useEffect, useState } from "react";
-import { userService } from "@/services/userService";
+import useFavorite from "../customComponents/useFavorite";
 
 
 export default function ProductCard({
@@ -23,27 +22,9 @@ export default function ProductCard({
 }: ProductType)
 {
 
-  const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
-
-  const { handleClickFavorite, handleClickProduct, handleClickRemoveFavorite , favoritesChange} = useProduct();
+  const { handleClickProduct} = useProduct();
   const { handleClickAddProductInCart } = useCart();
-
-const storedUser = sessionStorage.getItem("user")
-
-    if (!storedUser ) return
-
-    const productFavorite = async () => {
-        const res = await userService.getFavoriteProduct(String(id));
-        console.log(res)
-        if(res.data !== null) setProductIsFavorite(true);
-        else setProductIsFavorite(false);
-    }
-
-    
-    useEffect(() => {
-      
-      productFavorite();
-    }, [favoritesChange]);
+  const { productIsFavorite , handleClickFavorite, handleClickRemoveFavorite} = useFavorite(String(id));
 
 
   return (
@@ -52,7 +33,7 @@ const storedUser = sessionStorage.getItem("user")
 
       {
         productIsFavorite ? 
-          <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(id)}>
+          <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(String(id))}>
             <FaHeart />
           </button> 
         : 
