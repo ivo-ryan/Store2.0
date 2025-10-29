@@ -25,7 +25,8 @@ export default function useFavorite(id: string ) {
     const productFavorite = async (id: string) => {
       try {
         setLoading(true)
-        const res = await userService.getFavoriteProduct(id)
+        const res = await userService.getFavoriteProduct(id);
+        console.log(res)
         setProductIsFavorite(!!res?.data)
       } finally {
         setLoading(false)
@@ -35,6 +36,7 @@ export default function useFavorite(id: string ) {
     productFavorite(id)
   }, [favoritesChange])
     return {
+        loading,
         productIsFavorite,
         handleClickFavorite,
         handleClickRemoveFavorite
