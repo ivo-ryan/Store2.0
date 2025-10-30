@@ -18,9 +18,9 @@ import useFavorite from "../customComponents/useFavorite";
 
 export default function SingleProduct() {
     const { loading, product } = useProduct();
-    const idProduct = loading ? String(product[0]?.id) : '';
+    const idProduct = !loading && product[0]?.id ? String(product[0].id) : '';
     const { handleClickFavorite,handleClickRemoveFavorite, productIsFavorite } = useFavorite(idProduct);
-
+    console.log(productIsFavorite)
 
     if(loading) return <p>Carregando...</p>
 

@@ -25,8 +25,6 @@ export default function ProductCard({
   const { handleClickProduct} = useProduct();
   const { handleClickAddProductInCart } = useCart();
   const { productIsFavorite , handleClickFavorite, handleClickRemoveFavorite} = useFavorite(String(id));
-
-
   return (
     <div className={styles.card}  >
       {isNew && <span className={styles.newTag}>NOVO</span>}

@@ -20,13 +20,12 @@ export default function useFavorite(id: string ) {
  useEffect(() => {
     const storedUser = sessionStorage.getItem("user")
 
-    if (!storedUser) return
+    if (!storedUser || id === "") return
 
     const productFavorite = async (id: string) => {
       try {
         setLoading(true)
         const res = await userService.getFavoriteProduct(id);
-        console.log(res)
         setProductIsFavorite(!!res?.data)
       } finally {
         setLoading(false)
