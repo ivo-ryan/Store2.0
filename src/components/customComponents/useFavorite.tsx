@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function useFavorite(id: string ) {
     const [ productIsFavorite, setProductIsFavorite ] = useState<boolean>(false);
     const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
-    const [ loading, setLoading ] = useState<boolean>(false);
+    const [ favoriteLoading, setFavoriteLoading ] = useState<boolean>(false);
 
     const handleClickFavorite = async  (productId: number) => {
         await userService.addFavoriteProduct(productId);
@@ -24,18 +24,18 @@ export default function useFavorite(id: string ) {
 
     const productFavorite = async (id: string) => {
       try {
-        setLoading(true)
+        setFavoriteLoading(true)
         const res = await userService.getFavoriteProduct(id);
         setProductIsFavorite(!!res?.data)
       } finally {
-        setLoading(false)
+        setFavoriteLoading(false)
       }
     }
 
     productFavorite(id)
   }, [favoritesChange])
     return {
-        loading,
+        favoriteLoading,
         productIsFavorite,
         handleClickFavorite,
         handleClickRemoveFavorite

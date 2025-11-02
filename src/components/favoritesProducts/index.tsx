@@ -5,12 +5,10 @@ import ProductCard from "../productCard";
 import styles from "./styles.module.scss";
 
 export default function FavoritesProducts () {
-
     
     const { favorites , loading } = useFavorites();
 
     const products = favorites.map(p => p.product);
-    console.log(products)
     return (
         <>
         

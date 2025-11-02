@@ -8,29 +8,23 @@ import "swiper/css";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FiHeart, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
-import { FaHeart } from "react-icons/fa";
-import useFavorite from "../customComponents/useFavorite";
-
+import FavoriteProduct from "../favoriteProduct";
 
 
 export default function SingleProduct() {
-    const { loading, product } = useProduct();
-    const idProduct = !loading && product[0]?.id ? String(product[0].id) : '';
-    const { handleClickFavorite,handleClickRemoveFavorite, productIsFavorite } = useFavorite(idProduct);
-    console.log(productIsFavorite)
 
-    if(loading) return <p>Carregando...</p>
+    const { loading, product } = useProduct();
+
+    if (loading || !product[0]) return <p>Carregando...</p>;
+
+    const idProduct = String(product[0].id);
 
     return (
         <section className={styles.sectionContainer}>
-            <div className={styles.containerHeader}>
-                <div>
-                <HeaderNav/>
-                </div>
-            </div>
+
             <div className={styles.slideProduct}>
                 
                 <div className={styles.product}>
@@ -55,16 +49,10 @@ export default function SingleProduct() {
                 <div className={styles.info}>
                     {product[0].isNew && <span className={styles.newTag}>Novo</span>}
 
-                {
-                    productIsFavorite ? 
-                    <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(String(product[0].id))}>
-                        <FaHeart />
-                    </button> 
-                    : 
-                    <button className={styles.favorite} onClick={() => handleClickFavorite(product[0].id)}>
-                        <FiHeart />
-                    </button>
-                }
+                    <div className={styles.favorite}>
+                        <FavoriteProduct id={idProduct} />
+                    </div>
+
 
                     <h2>{product[0].name}</h2>
 

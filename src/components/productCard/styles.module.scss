@@ -95,23 +95,6 @@
     top: 12px;
     right: 12px;
     background: transparent;
-    border: none;
-    color: $textLight;
-    cursor: pointer;
-    transition: color 0.2s;
-
-    &:hover {
-      color: $accentBlue;
-    }
-
-    svg {
-      font-size: 1.2rem;
-    }
-  }
-  
-  .isFavorite{
-    @extend .favorite;
-    color: $accentBlue;
   }
   
 }

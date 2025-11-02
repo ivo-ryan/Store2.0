@@ -1,0 +1,22 @@
+@use "../../app/colors.module.scss" as * ;
+
+.favorite {
+        background: transparent;
+        border: none;
+        color: $textLight;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+        color: $accentBlue;
+        }
+
+        svg {
+        font-size: 1.5rem;
+        }
+  }
+
+  .isFavorite{
+    @extend .favorite;
+    color: $accentBlue;
+  }

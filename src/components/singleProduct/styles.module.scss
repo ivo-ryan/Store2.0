@@ -18,16 +18,7 @@
     justify-content: space-evenly;
 }
 
-.containerHeader{
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-     
-    div{
-        position: relative;
-    }
-}
+
 
 .container{
     display: flex;
@@ -132,22 +123,6 @@
         right: 1rem;
         background: transparent;
         border: none;
-        color: $textLight;
-        cursor: pointer;
-        transition: color 0.2s;
-
-        &:hover {
-        color: $accentBlue;
-        }
-
-        svg {
-        font-size: 1.5rem;
-        }
-  }
-
-  .isFavorite{
-    @extend .favorite;
-    color: $accentBlue;
   }
     
 }
