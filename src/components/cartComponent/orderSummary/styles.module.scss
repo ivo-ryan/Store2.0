@@ -1,0 +1,86 @@
+@use "../../../app/colors.module.scss" as * ;
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.productBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #222;
+  border-radius: 12px;
+  padding: 1rem;
+
+  .imagePlaceholder {
+    width: 80px;
+    height: 80px;
+    background: #333;
+    border-radius: 8px;
+  }
+
+  .productName {
+    font-weight: 600;
+  }
+
+  .productPrice {
+    color: $accentBlue;
+    margin-top: 0.25rem;
+  }
+}
+
+.couponBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+
+  input {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #181818;
+    color: #fff;
+    outline: none;
+
+    &:focus {
+      border-color: $colorPrimary;
+    }
+  }
+}
+
+.totalBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+
+  strong {
+    color: $accentBlue;
+  }
+}
+
+.checkoutButton {
+  background: $colorPrimary;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: $accentBlue;
+  }
+}

@@ -1,12 +1,13 @@
-import HeaderCart from "@/components/cartComponent/headerCart";
+
 import styles from "./styles.module.scss";
-import CartProducts from "@/components/cartComponent/cartProduct";
+import Cart from "@/components/cartComponent";
+import HeaderTop from "@/components/header/headerTop";
 
 export default function Page (){
     return (
         <>
-            <HeaderCart/>
-            <CartProducts/>
+            <HeaderTop/>
+            <Cart/>
         </>
     )
 }

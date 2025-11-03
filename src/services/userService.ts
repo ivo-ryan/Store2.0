@@ -9,6 +9,14 @@ export type FavoriteProductType = {
     userId: number;
 }
 
+export type CartProduct = {    
+    addAt: string;
+    cartId: number;
+    product: ProductType;
+    productId: number;
+    quantity: number;
+}
+
 export const userService = {
     login: async (email: string, password: string) => {
         const res = await publicApi.post("/auth/login", {

@@ -1,0 +1,65 @@
+@use "../../app/colors.module.scss" as *;
+
+.cartContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  color: #fff;
+  background-color: #111;
+  min-height: 100vh;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cartItemsSection {
+  background: #181818;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid $accentBlue;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.continueButton {
+  margin-top: 1.5rem;
+  background: transparent;
+  border: 1px solid $accentBlue;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $accentBlue;    
+    border-color: #fff;
+
+    a{
+      color: #111;
+    }
+  }
+}
+
+.orderSummarySection {
+  background: #181818;
+  border-radius: 16px;
+  border: 1px solid $accentBlue;
+  padding: 1.5rem;
+}

@@ -1,18 +1,12 @@
 "use client";
 
-import { userService } from "@/services/userService";
+import { CartProduct, userService } from "@/services/userService";
 import { useEffect, useState } from "react";
 
 export default function useCart (){
 
-    const [ products, setProducts ] = useState([]);
+    const [ products, setProducts ] = useState<CartProduct[]>([]);
     const [ loading, setLoading ] = useState(false);
-
-    // const userExists = () => {
-    //     const storedUser = sessionStorage.getItem("user");
-
-    //     if(!storedUser) return 
-    // }
 
     const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
         const storedUser = sessionStorage.getItem("user");
