@@ -7,14 +7,15 @@ export default function useCart (){
 
     const [ products, setProducts ] = useState<CartProduct[]>([]);
     const [ loading, setLoading ] = useState(false);
+    const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
 
     const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
         const storedUser = sessionStorage.getItem("user");
 
         if(!storedUser) return 
 
-        const res = await userService.addProductInCart(productId, change);
-        console.log(res);
+        await userService.addProductInCart(productId, change);
+        setFavoritesChange(prev => !prev);
     };
 
     const handleClickRemoveProductInCart = async (productId: string) => {
@@ -22,9 +23,8 @@ export default function useCart (){
 
         if(!storedUser) return 
 
-        const res = await userService.deleteProductInCart(productId);
-        console.log(res);
-
+        await userService.deleteProductInCart(productId);
+        setFavoritesChange(prev => !prev);
     }
 
     const findAllProductsInCart = async () => {
@@ -45,7 +45,7 @@ export default function useCart (){
 
     useEffect(() => {
         findAllProductsInCart();
-    }, [])
+    }, [favoritesChange])
 
 
     

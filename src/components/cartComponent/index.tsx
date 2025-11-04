@@ -7,8 +7,9 @@ import OrderSummary from "./orderSummary";
 import styles from "./styles.module.scss";
 
 export default function Cart() {
-    const { products } = useCart();
-    console.log(products)
+    const { products , handleClickAddProductInCart, handleClickRemoveProductInCart , loading} = useCart();
+   
+  console.log(products)
 
   return (
     <div className={styles.cartContainer}>
@@ -16,8 +17,14 @@ export default function Cart() {
         <h2>Seu Carrinho</h2>
         <div className={styles.itemsList}>
           {
+            loading && <p>Carregando...</p>
+          }
+          {
             products.map(i => (
-                <CartItem key={i.productId} {...i}/>
+                <CartItem key={i.productId} 
+                handleClickAddProductInCart={handleClickAddProductInCart} 
+                handleClickRemoveProductInCart={handleClickRemoveProductInCart} 
+                cartProduct={i} />
             ))
           }
         </div>
@@ -25,7 +32,10 @@ export default function Cart() {
       </section>
 
       <section className={styles.orderSummarySection}>
-        <OrderSummary />
+           {
+            loading ? <p>Carregando...</p> :
+           <OrderSummary products={products}/>
+          }
       </section>
     </div>
   );

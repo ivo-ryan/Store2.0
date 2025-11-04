@@ -1,9 +1,27 @@
 
 import { CartProduct } from "@/services/userService";
 import styles from "./styles.module.scss";
+import { FaTrash } from "react-icons/fa";
 
-export default function CartItem({quantity, product}:CartProduct) {
+type props = {
+  cartProduct: CartProduct;
+  handleClickAddProductInCart: (productId: number, change?: number) => Promise<void>;
+  handleClickRemoveProductInCart: (productId: string) => Promise<void>;
+}
 
+export default function CartItem({ 
+  cartProduct: { quantity, product },
+  handleClickAddProductInCart,
+  handleClickRemoveProductInCart 
+}:props) {
+
+  const removeProductInCart = (productId: string) => {
+    if(quantity === 1){
+      handleClickRemoveProductInCart(productId);
+    }
+
+    handleClickAddProductInCart(Number(productId), -1);
+  }
 
 
   return (
@@ -17,12 +35,12 @@ export default function CartItem({quantity, product}:CartProduct) {
         <p className={styles.productName}>{product.name}</p>
         <p className={styles.productPrice}>{Number(product.price * quantity).toFixed(2)}</p>
         <div className={styles.actions}>
-          <button>-</button>
+          <button onClick={() => removeProductInCart(String(product.id))}>-</button>
           <span>{quantity}</span>
-          <button>+</button>
+          <button onClick={() => handleClickAddProductInCart(product.id)}>+</button>
         </div>
       </div>
-      <button className={styles.removeButton}>Remover</button>
+      <button className={styles.removeButton} onClick={() => handleClickRemoveProductInCart(String(product.id))} >Remover <FaTrash/>  </button>
     </div>
   );
 }

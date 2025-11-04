@@ -10,7 +10,7 @@
   }
 }
 
-.productBox {
+.productsBox {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -18,22 +18,30 @@
   border-radius: 12px;
   padding: 1rem;
 
+  .productName {
+    font-weight: 600;
+  }
+  
+  .productPrice {
+    color: $accentBlue;
+    margin-top: 0.25rem;
+  }
+
   .imagePlaceholder {
     width: 80px;
     height: 80px;
     background: #333;
     border-radius: 8px;
-  }
-
-  .productName {
-    font-weight: 600;
-  }
-
-  .productPrice {
-    color: $accentBlue;
-    margin-top: 0.25rem;
+  
+    img{
+       width: 100% ;
+       height: 80px;
+       object-fit: contain;
+  
+     }   
   }
 }
+
 
 .couponBox {
   display: flex;
