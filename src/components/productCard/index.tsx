@@ -44,8 +44,14 @@ export default function ProductCard({
         </div>
 
         <div className={styles.price}>
-          <span className={styles.current}>R$ {Number(price).toFixed(2)}</span>
-          {oldPrice && <span className={styles.old}>R$ {Number(oldPrice).toFixed(2)}</span>}
+          <span className={styles.current}>{(price * 1).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</span>
+          {oldPrice && <span className={styles.old}> {(oldPrice * 1).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</span>}
         </div>
       </Link>
 

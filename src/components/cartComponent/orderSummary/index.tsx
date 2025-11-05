@@ -16,13 +16,20 @@ export default function OrderSummary({ products }:props) {
 
       {
         products.map(i => (
-        <div className={styles.productsBox}>
+        <div className={styles.productsBox} key={i.productId}>
           <div className={styles.imagePlaceholder}>
             <img src={i.product.images[0].url} alt={i.product.name} />
           </div>
           <div >
             <p className={styles.productName}>{i.product.name}</p>
-            <p className={styles.productPrice}>R$ {Number(i.product.price * i.quantity).toFixed(2)}</p>
+            <p className={styles.productPrice}>{(i.product.price * 1).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        })
+    }</p>
+          </div>
+          <div className={styles.quantity}>
+            X {i.quantity}
           </div>
       </div>
         ))
@@ -37,7 +44,11 @@ export default function OrderSummary({ products }:props) {
 
       <div className={styles.totalBox}>
         <span>Total:</span>
-        <strong>R$ { totalPrice.toFixed(2) }</strong>
+        <strong>{ totalPrice.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+      })
+    }</strong>
       </div>
 
       <button className={styles.checkoutButton}>

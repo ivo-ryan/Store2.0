@@ -17,41 +17,6 @@
     }
   }
 
-  .searchBox {
-    flex: 1;
-    max-width: 500px;
-    margin: 0 2rem;
-    display: flex;
-    background-color: $textLight;
-    border-radius: 8px;
-    overflow: hidden;
-
-    input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      padding: 0.75rem 1rem;
-      color: black;
-      font-weight: 600;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    button {
-      background: $accentBlue;
-      border: none;
-      color: #fff;
-      padding: 0 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        font-size: 1.2rem;
-      }
-    }
-  }
 
   .icons {
     display: flex;

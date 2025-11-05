@@ -1,21 +1,19 @@
 
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import { FiUser, FiHeart, FiShoppingCart, FiSearch } from "react-icons/fi";
+import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
+import { ProductType } from "@/services/productsServices";
+import { ProductFilter } from "../productFilter";
 
-export default function HeaderTop() {
+
+export default function HeaderTop({products}:{products: ProductType[] }) {
   return (
     <div className={styles.headerTop}>
       <div className={styles.logo}>
         <img src="/logo.png" alt="Logo" />
       </div>
 
-      <div className={styles.searchBox}>
-        <input type="text" placeholder="Pesquisar produtos..." />
-        <button>
-          <FiSearch />
-        </button>
-      </div>
+     <ProductFilter products={products} />
 
       <div className={styles.icons}>
        <Link href="/login"> <FiUser /></Link>

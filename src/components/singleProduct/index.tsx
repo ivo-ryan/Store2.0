@@ -12,11 +12,13 @@ import { FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
+import useCart from "../customComponents/useCart";
 
 
 export default function SingleProduct() {
 
     const { loading, product } = useProduct();
+    const { handleClickAddProductInCart } = useCart()
 
     if (loading || !product[0]) return <p>Carregando...</p>;
 
@@ -62,19 +64,25 @@ export default function SingleProduct() {
                     </div>
 
                      <div className={styles.price}>
-                        <span className={styles.current}>R$ {Number(product[0].price).toFixed(2)}</span>
-                        {product[0].oldPrice && <span className={styles.old}>R$ {Number(product[0].oldPrice).toFixed(2)}</span>}
+                        <span className={styles.current}>{(product[0].price * 1).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</span>
+                        {product[0].oldPrice && <span className={styles.old}>{(product[0].oldPrice * 1).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</span>}
                     </div>
 
                    <div className={styles.containerButton}>
-                      <button className={styles.cartButton}>
-                        <FiShoppingCart />
-                        Adicionar ao Carrinho
-                    </button>
-                     <button className={styles.cartButton}>
-                        <FiShoppingCart />
-                        Comprar Agora
-                    </button>
+                      <button className={styles.cartButton} onClick={() => handleClickAddProductInCart(product[0].id)}>
+                            <FiShoppingCart />
+                            Adicionar ao Carrinho
+                        </button>
+                        <button className={styles.cartButton}>
+                            <FiShoppingCart />
+                            Comprar Agora
+                        </button>
                    </div>
                 </div>
             </div>

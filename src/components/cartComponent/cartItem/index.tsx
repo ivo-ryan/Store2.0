@@ -33,7 +33,10 @@ export default function CartItem({
       </div>
       <div className={styles.infoBox}>
         <p className={styles.productName}>{product.name}</p>
-        <p className={styles.productPrice}>{Number(product.price * quantity).toFixed(2)}</p>
+        <p className={styles.productPrice}>{(product.price * quantity).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</p>
         <div className={styles.actions}>
           <button onClick={() => removeProductInCart(String(product.id))}>-</button>
           <span>{quantity}</span>

@@ -13,6 +13,7 @@
 .productsBox {
   display: flex;
   align-items: center;
+  position: relative;
   gap: 1rem;
   background: #222;
   border-radius: 12px;
@@ -39,6 +40,13 @@
        object-fit: contain;
   
      }   
+  }
+
+  .quantity{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: 600;
   }
 }
 
@@ -92,3 +100,4 @@
     background: $accentBlue;
   }
 }
+

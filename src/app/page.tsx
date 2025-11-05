@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <div className={styles.page}>
-        <Header/>
+        <Header products={products}/>
         <CategoriesSection/>
         <FeaturedProductsSection products={newestProducts.data} />
         <Products products={products.data.data} />

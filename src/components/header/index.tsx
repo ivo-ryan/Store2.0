@@ -1,10 +1,11 @@
+import { ProductType } from "@/services/productsServices";
 import HeaderSection from "./headerSection";
 import HeaderTop from "./headerTop";
 
-export default function Header(){
+export default function Header({ products }:{products:ProductType[]}){
     return (
         <>
-            <HeaderTop/>
+            <HeaderTop products={products}/>
             <HeaderSection/>
         </>
     )
