@@ -1,12 +1,12 @@
 "use client"
 
 import { productsService, ProductType } from "@/services/productsServices"
-import { userService } from "@/services/userService";
 import { useEffect, useState } from "react"
 
 
 export default function useProduct (){
     const [ product , setProduct ] = useState<ProductType[] >([]);
+    const [ products, setProducts ] = useState<ProductType[]>([]);
     const [ loading , setLoading ] = useState(true);
 
     
@@ -45,8 +45,24 @@ export default function useProduct (){
         };
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try{
+                const res = await productsService.getAll();
+                setProducts(res.data.data);
+            }
+            finally{
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    } ,[])
+
     return {
         product,
+        products,
         loading,
         handleClickProduct
     }

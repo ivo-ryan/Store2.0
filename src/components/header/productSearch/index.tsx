@@ -3,7 +3,7 @@
 import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
 
-export function ProductCard({ product }: {product: ProductType}) {
+export default function ProductSearch({ product }: {product: ProductType}) {
   return (
     <div className={styles.card}>
       <div className={styles.imageBox}>
@@ -13,7 +13,7 @@ export function ProductCard({ product }: {product: ProductType}) {
       <div className={styles.info}>
         <h3>{product.name}</h3>
         <p>
-          {product.price.toLocaleString("pt-BR", {
+          {(product.price * 1).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
           })}

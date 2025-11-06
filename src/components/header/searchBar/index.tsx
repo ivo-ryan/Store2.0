@@ -12,9 +12,9 @@ const searchSchema = z.object({
 
 type SearchFormData = z.infer<typeof searchSchema>;
 
-export function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
+export default function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
 
-  const { register, handleSubmit, reset } = useForm<SearchFormData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<SearchFormData>({
     resolver: zodResolver(searchSchema),
   });
 
@@ -29,7 +29,9 @@ export function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
         type="text"
         placeholder="Buscar produtos..."
         {...register("query")}
+        onChange={(e) => onSearch(e.target.value)}
       />
+      {errors.query && <span className={styles.error}>{errors.query.message}</span>}
       <button type="submit" >
         <FiSearch />
       </button>

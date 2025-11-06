@@ -1,4 +1,5 @@
 
+
 import Header from "@/components/header";
 import styles from "./page.module.scss";
 import CategoriesSection from "@/components/categories/categorySection";
@@ -14,7 +15,7 @@ export default async function Home() {
 
   return (
     <div className={styles.page}>
-        <Header products={products}/>
+        <Header/>
         <CategoriesSection/>
         <FeaturedProductsSection products={newestProducts.data} />
         <Products products={products.data.data} />
