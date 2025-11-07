@@ -8,6 +8,7 @@
   text-align: center;
   transition: all 0.3s ease;
   border: 1px solid transparent;
+  gap: 10px;
 
   &:hover {
     border-color: $accentBlue;
@@ -23,11 +24,12 @@
   .imageBox {
     width: 80px;
     height: 80px;
+    padding-top: 5px;
   
     img {
       width: 100%;
       object-fit: contain;
-      height: 80px;
+      height: 70px;
       margin-bottom: 1rem;
     }
   }

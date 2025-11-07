@@ -5,14 +5,16 @@ import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import ProductFilter from "../productFilter";
 
 
-export default function HeaderTop() {
+export default function HeaderTop({search= true}:{ search?: boolean }) {
   return (
     <div className={styles.headerTop}>
       <div className={styles.logo}>
         <img src="/logo.png" alt="Logo" />
       </div>
-
-     <ProductFilter  />
+    {
+      search && <ProductFilter  />
+    }
+     
 
       <div className={styles.icons}>
        <Link href="/login"> <FiUser /></Link>

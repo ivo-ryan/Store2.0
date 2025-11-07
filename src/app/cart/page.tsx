@@ -6,7 +6,7 @@ import HeaderTop from "@/components/header/headerTop";
 export default function Page (){
     return (
         <>
-            <HeaderTop/>
+            <HeaderTop search={false} />
             <Cart/>
         </>
     )

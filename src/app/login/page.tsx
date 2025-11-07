@@ -7,7 +7,7 @@ import HeaderNav from "@/components/header/headerNav";
 export default function Page () {
   return (
     <>
-      <HeaderTop/>
+      <HeaderTop search={false} />
 
       <div className={styles.containerHeader}>
           <HeaderNav/>

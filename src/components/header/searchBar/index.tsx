@@ -12,15 +12,23 @@ const searchSchema = z.object({
 
 type SearchFormData = z.infer<typeof searchSchema>;
 
-export default function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
+export default function SearchBar({
+  onSearch,
+  onSubmitSearch,
+}: {
+  onSearch: (query: string) => void;
+  onSubmitSearch?: (query: string) => void;
+}) {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<SearchFormData>({
     resolver: zodResolver(searchSchema),
   });
 
   const onSubmit = (data: SearchFormData) => {
-    onSearch(data.query);
-    reset();
+    if (onSubmitSearch) {
+      onSubmitSearch(data.query);
+      reset();
+    }
   };
 
   return (
