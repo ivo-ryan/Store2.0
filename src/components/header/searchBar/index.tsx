@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import { FiSearch } from "react-icons/fi";
 
 const searchSchema = z.object({
-  query: z.string().min(1, "Digite algo para buscar"),
+  query: z.string().min(1),
 });
 
 type SearchFormData = z.infer<typeof searchSchema>;
@@ -39,7 +39,6 @@ export default function SearchBar({
         {...register("query")}
         onChange={(e) => onSearch(e.target.value)}
       />
-      {errors.query && <span className={styles.error}>{errors.query.message}</span>}
       <button type="submit" >
         <FiSearch />
       </button>

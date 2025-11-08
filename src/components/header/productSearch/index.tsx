@@ -2,10 +2,14 @@
 
 import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
+import useProduct from "@/components/customComponents/useProduct";
+import Link from "next/link";
 
 export default function ProductSearch({ product }: {product: ProductType}) {
+  const { handleClickProduct } = useProduct();
+
   return (
-    <div className={styles.card}>
+    <Link href="/product" className={styles.card} onClick={() => handleClickProduct(String(product.id), String(product.categoryId))}>
       <div className={styles.imageBox}>
         <img src={product.images[0]?.url} alt={product.name} />
       </div>
@@ -19,6 +23,6 @@ export default function ProductSearch({ product }: {product: ProductType}) {
           })}
         </p>
       </div>
-    </div>
+    </Link >
   );
 }

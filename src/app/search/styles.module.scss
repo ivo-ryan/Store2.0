@@ -1,11 +1,10 @@
 .containerHeader{
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    height: 3rem;
     div{
-        width: 100%;
-        position: relative;
+         position: relative;
+         width: 100%;
     }
 }

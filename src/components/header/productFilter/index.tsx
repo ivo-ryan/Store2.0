@@ -41,6 +41,7 @@ export default function ProductFilter() {
   const handleSubmitSearch = () => {
     if (queryValue.trim() !== "") {
       router.push(`/search?query=${encodeURIComponent(queryValue)}`);
+      setFiltered([])
     }
   };
 
@@ -50,13 +51,16 @@ export default function ProductFilter() {
     {
       filtered.length > 0 &&
 
-      <div className={styles.grid}>
+      <div className={styles.grid} onClick={() => setFiltered([])}>
         <div className={styles.scrollBox}>
           {filtered.length > 0 && !notFound && (
             filtered.map((p) => <ProductSearch key={p.id} product={p} />)
           )}
 
-          {notFound && <p className={styles.noResult}>Nenhum produto encontrado 😕</p>}
+          {notFound && <div className={styles.noResult}>
+              <img src="/error.gif" alt="" />
+              <p>Nenhum produto encontrado</p>
+             </div>}
         </div>
       </div>
     }

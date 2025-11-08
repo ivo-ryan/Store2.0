@@ -2,7 +2,7 @@
 
   .searchBox {
     flex: 1;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 2rem;
     display: flex;
     background-color: $textLight;
@@ -10,6 +10,7 @@
     overflow: hidden;
 
     input {
+      width: 100%;
       flex: 1;
       background: transparent;
       border: none;
