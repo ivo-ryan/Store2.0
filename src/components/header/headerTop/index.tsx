@@ -1,11 +1,14 @@
+"use client";
 
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import ProductFilter from "../productFilter";
+import useCart from "@/components/customComponents/useCart";
 
 
 export default function HeaderTop({search= true}:{ search?: boolean }) {
+  const { products } = useCart()
   return (
     <div className={styles.headerTop}>
       <div className={styles.logo}>
@@ -19,7 +22,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
       <div className={styles.icons}>
        <Link href="/login"> <FiUser /></Link>
         <Link href="/favorites"><FiHeart /></Link>
-        <Link href="/cart" > <FiShoppingCart /> </Link>
+        <Link href="/cart" className={styles.cart}> <span>{products.length}</span> <FiShoppingCart /> </Link>
       </div>
     </div>
   );

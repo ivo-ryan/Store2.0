@@ -17,6 +17,14 @@ export type CartProduct = {
     quantity: number;
 }
 
+export type ItemsProps = {
+    productId: number;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+}
+
 export const userService = {
     login: async (email: string, password: string) => {
         const res = await publicApi.post("/auth/login", {
@@ -115,6 +123,17 @@ export const userService = {
 
     deleteProductInCart: async (id: string) => {
         const res = await privateApi.delete(`/cart/products/${id}`).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res
+    },
+
+    createOrder: async (items: ItemsProps[]) => {
+        const res = await privateApi.post("/checkout", {
+            items
+        }).catch((error) => {
             console.log(error.response.data.message);
             return error.response;
         });

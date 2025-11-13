@@ -32,5 +32,21 @@
         color: $accentBlue;
       }
     }
+
+    .cart{
+      position: relative;
+
+      span{
+        position: absolute;
+        top: -22px;
+        right: 0;
+        font-weight: 600;
+        text-decoration: none;
+        color: $textLight;
+        background-color: $accentBlue;
+        padding: 1px 5px;
+        border-radius: 50%;
+      }
+    }
   }
 }

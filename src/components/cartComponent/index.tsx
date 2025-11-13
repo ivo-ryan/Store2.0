@@ -8,8 +8,6 @@ import styles from "./styles.module.scss";
 
 export default function Cart() {
     const { products , handleClickAddProductInCart, handleClickRemoveProductInCart , loading} = useCart();
-   
-  console.log(products)
 
   return (
     <div className={styles.cartContainer}>

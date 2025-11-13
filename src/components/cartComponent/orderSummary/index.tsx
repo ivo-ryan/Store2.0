@@ -9,6 +9,14 @@ export default function OrderSummary({ products }:props) {
 
   const price = products.map(i => ( i.product.price * i.quantity ));
   const totalPrice = price.reduce((acc, price) => acc + price, 0);
+  const productFilter = products.map((i) => ({
+      quantity: i.quantity, 
+      productId: i.product.id,
+      name: i.product.name,
+      price: i.product.price,
+      image: i.product.images[0].url
+    }));
+
 
   return (
     <div className={styles.summary}>
