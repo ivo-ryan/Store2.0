@@ -8,7 +8,8 @@ import useCart from "@/components/customComponents/useCart";
 
 
 export default function HeaderTop({search= true}:{ search?: boolean }) {
-  const { products } = useCart()
+  const { products , loading} = useCart();
+  console.log(products.length);
   return (
     <div className={styles.headerTop}>
       <div className={styles.logo}>
@@ -22,7 +23,11 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
       <div className={styles.icons}>
        <Link href="/login"> <FiUser /></Link>
         <Link href="/favorites"><FiHeart /></Link>
-        <Link href="/cart" className={styles.cart}> <span>{products.length}</span> <FiShoppingCart /> </Link>
+        <Link href="/cart" className={styles.cart}> {
+          !loading && <span>{products.length}</span>
+
+        }
+         <FiShoppingCart /> </Link>
       </div>
     </div>
   );

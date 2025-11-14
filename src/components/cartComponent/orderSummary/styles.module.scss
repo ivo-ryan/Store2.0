@@ -88,7 +88,7 @@
 
 .checkoutButton {
   background: $colorPrimary;
-  color: #111;
+  color: $textLight;
   border: none;
   border-radius: 8px;
   padding: 1rem;
@@ -97,7 +97,7 @@
   transition: 0.3s;
 
   &:hover {
-    background: $accentBlue;
+    background: #0869ca;
   }
 }
 

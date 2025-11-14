@@ -7,7 +7,7 @@ import OrderSummary from "./orderSummary";
 import styles from "./styles.module.scss";
 
 export default function Cart() {
-    const { products , handleClickAddProductInCart, handleClickRemoveProductInCart , loading} = useCart();
+    const { products , handleClickAddProductInCart, handleClickRemoveProductInCart , hanldeClickCreateOrder, loading} = useCart();
 
   return (
     <div className={styles.cartContainer}>
@@ -32,7 +32,7 @@ export default function Cart() {
       <section className={styles.orderSummarySection}>
            {
             loading ? <p>Carregando...</p> :
-           <OrderSummary products={products}/>
+           <OrderSummary products={products} hanldeClickCreateOrder={hanldeClickCreateOrder}/>
           }
       </section>
     </div>

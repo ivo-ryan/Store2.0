@@ -8,7 +8,7 @@ export default function useCart (){
     const [ products, setProducts ] = useState<CartProduct[]>([]);
     const [ loading, setLoading ] = useState(false);
     const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
-
+    
     const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
         const storedUser = sessionStorage.getItem("user");
 
@@ -17,6 +17,29 @@ export default function useCart (){
         await userService.addProductInCart(productId, change);
         setFavoritesChange(prev => !prev);
     };
+
+    const hanldeClickCreateOrder = async () => {
+        const storedUser = sessionStorage.getItem("user");
+
+        if(!storedUser) return ;
+
+        const productFilter = products.map((i) => ({
+            quantity: i.quantity, 
+            productId: i.product.id,
+            name: i.product.name,
+            price: Number(i.product.price),
+            image: i.product.images[0].url
+        }));
+
+        try{
+            setLoading(true)
+            await userService.createOrder(productFilter);
+
+        }finally{
+            setProducts([]);
+            setLoading(false)
+        }
+    }
 
     const handleClickRemoveProductInCart = async (productId: string) => {
         const storedUser = sessionStorage.getItem("user");
@@ -53,6 +76,7 @@ export default function useCart (){
         products,
         loading,
         handleClickAddProductInCart,
-        handleClickRemoveProductInCart
+        handleClickRemoveProductInCart,
+        hanldeClickCreateOrder
     }
 }
