@@ -2,20 +2,20 @@
 
 import { CartProduct, userService } from "@/services/userService";
 import { useEffect, useState } from "react";
+import { useAuth } from "./useAuth";
 
 export default function useCart (){
 
-    const [ products, setProducts ] = useState<CartProduct[]>([]);
+    const { productsCart , setCartChange, setProductsCart} = useAuth();
     const [ loading, setLoading ] = useState(false);
-    const [ favoritesChange, setFavoritesChange ] = useState<boolean>(false);
-    
+    console.log(productsCart)
     const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
         const storedUser = sessionStorage.getItem("user");
 
         if(!storedUser) return 
 
         await userService.addProductInCart(productId, change);
-        setFavoritesChange(prev => !prev);
+        setCartChange(prev => !prev);
     };
 
     const hanldeClickCreateOrder = async () => {
@@ -23,7 +23,7 @@ export default function useCart (){
 
         if(!storedUser) return ;
 
-        const productFilter = products.map((i) => ({
+        const productFilter = productsCart.map((i) => ({
             quantity: i.quantity, 
             productId: i.product.id,
             name: i.product.name,
@@ -36,7 +36,8 @@ export default function useCart (){
             await userService.createOrder(productFilter);
 
         }finally{
-            setProducts([]);
+            setCartChange(prev => !prev);
+            setProductsCart([]);
             setLoading(false)
         }
     }
@@ -47,33 +48,13 @@ export default function useCart (){
         if(!storedUser) return 
 
         await userService.deleteProductInCart(productId);
-        setFavoritesChange(prev => !prev);
+        setCartChange(prev => !prev);
     }
-
-    const findAllProductsInCart = async () => {
-        const storedUser = sessionStorage.getItem("user");
-
-        if(!storedUser) return 
-
-        try{
-            setLoading(true);
-            const res = await userService.getProductsInCart();
-            setProducts(res);
-
-        }finally{
-            setLoading(false);
-        }
-
-    }
-
-    useEffect(() => {
-        findAllProductsInCart();
-    }, [favoritesChange])
 
 
     
     return {
-        products,
+        products: productsCart,
         loading,
         handleClickAddProductInCart,
         handleClickRemoveProductInCart,

@@ -2,11 +2,14 @@
 
 import { createContext, useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { userService } from "@/services/userService";
+import { CartProduct, userService } from "@/services/userService";
 
 interface AuthContextProps {
   user: { email: string } | null;
+  productsCart: CartProduct[];
   token: string | null;
+  setCartChange: React.Dispatch<React.SetStateAction<boolean>>;
+  setProductsCart: React.Dispatch<React.SetStateAction<CartProduct[]>>
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -18,9 +21,24 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [ user, setUser ] = useState<{ email: string } | null>(null);
   const [ loading, setLoading ] = useState<boolean>(false);
+  const [ cartChange, setCartChange ] = useState<boolean>(false);
   const [ token, setToken ] = useState<string | null>(null);
+  const [productsCart, setProductsCart] = useState<CartProduct[]>([]);
   const [isMounted, setIsMounted] = useState(false); 
   const router = useRouter();
+
+
+    const refreshCart = async () => {
+    const storedUser = sessionStorage.getItem("user");
+    if (!storedUser) return;
+
+    const res = await userService.getProductsInCart();
+    setProductsCart(res);
+  };
+
+  useEffect(() => {
+    refreshCart();
+  }, [cartChange])
 
 
   useEffect(() => {
@@ -88,7 +106,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout , registerUser}}>
+    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout , registerUser, productsCart, setCartChange, setProductsCart}}>
       {children}
     </AuthContext.Provider>
   );
