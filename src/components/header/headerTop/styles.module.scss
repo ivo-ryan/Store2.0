@@ -21,6 +21,28 @@
   .icons {
     display: flex;
     gap: 1.2rem;
+    position: relative;
+
+  .userWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .5s ease ;
+
+
+    .hide{
+      display: none;
+    }
+
+    .show{
+      display: block;
+    }
+  }
+
+  .userIcon {
+    font-size: 20px;
+  }
 
     svg {
       color: $textLight;
@@ -50,3 +72,14 @@
     }
   }
 }
+
+.overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+
+

@@ -8,7 +8,7 @@ export default function useCart (){
 
     const { productsCart , setCartChange, setProductsCart} = useAuth();
     const [ loading, setLoading ] = useState(false);
-    console.log(productsCart)
+
     const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
         const storedUser = sessionStorage.getItem("user");
 

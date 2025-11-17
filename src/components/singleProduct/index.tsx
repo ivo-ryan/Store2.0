@@ -65,13 +65,13 @@ export default function SingleProduct() {
 
                      <div className={styles.price}>
                         <span className={styles.current}>{(product[0].price * 1).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</span>
-                        {product[0].oldPrice && <span className={styles.old}>{(product[0].oldPrice * 1).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</span>}
+                            style: "currency",
+                            currency: "BRL",
+                        })}</span>
+                                            {product[0].oldPrice && <span className={styles.old}>{(product[0].oldPrice * 1).toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                        })}</span>}
                     </div>
 
                    <div className={styles.containerButton}>

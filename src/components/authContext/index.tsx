@@ -8,6 +8,7 @@ interface AuthContextProps {
   user: { email: string } | null;
   productsCart: CartProduct[];
   token: string | null;
+  loading: boolean;
   setCartChange: React.Dispatch<React.SetStateAction<boolean>>;
   setProductsCart: React.Dispatch<React.SetStateAction<CartProduct[]>>
   isAuthenticated: boolean;
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [ token, setToken ] = useState<string | null>(null);
   const [productsCart, setProductsCart] = useState<CartProduct[]>([]);
   const [isMounted, setIsMounted] = useState(false); 
+  const [ isLogout, setIsLogout ] = useState(false);
   const router = useRouter();
 
 
@@ -46,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const token = sessionStorage.getItem("token");
         const userJson = sessionStorage.getItem("user");
         if (token) {
+          setIsLogout(false);
           setToken(token);
         }
     
@@ -53,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setUser(JSON.parse(userJson));
         }
 
-  }, []);
+  }, [isLogout]);
 
   const login = async (email: string, password: string) => {
     try {
@@ -85,7 +88,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     sessionStorage.removeItem("user");
     setToken(null);
     setUser(null);
-    router.push("/login");
+    setIsLogout(true);
+    router.push("/");
   };
 
   const registerUser = async  (name: string , email: string, password: string) => {
@@ -106,7 +110,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, isAuthenticated: !!token, login, logout , registerUser, productsCart, setCartChange, setProductsCart}}>
+    <AuthContext.Provider value={{ 
+      user,
+      token,
+      isAuthenticated: !!token, 
+      login, 
+      logout , 
+      registerUser, 
+      productsCart, 
+      setCartChange, 
+      setProductsCart,
+      loading
+      }}>
       {children}
     </AuthContext.Provider>
   );
