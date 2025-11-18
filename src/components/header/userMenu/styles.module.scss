@@ -1,8 +1,10 @@
+@use "../../../app/colors.module.scss" as * ;
+
 .container {
   position: absolute;
   top: 55px;
   right: 10px;
-  background: #fff;
+  background-color: $textLight;
   width: 160px;
   padding: 10px 0;
   border-radius: 8px;
@@ -12,8 +14,16 @@
   animation: fadeIn 0.15s ease-in-out;
   z-index: 10;
 
+  a,button{
+    font-weight: 500;
+    color: $colorCard;
+  }
 
-
+  button{
+    border: none;
+    text-align: left;
+    background-color: transparent;
+  }
 
 }
 
