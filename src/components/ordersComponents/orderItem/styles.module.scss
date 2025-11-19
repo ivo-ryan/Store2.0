@@ -1,0 +1,42 @@
+@use "../../../app/colors.module.scss" as * ;
+
+.item{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    height: 100px;
+    border-bottom: 1px solid #cccc;
+
+    .imgContainer{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        img{
+
+            max-height: 90px;
+            width: 50px ;
+            object-fit: contain;
+        }
+
+        p{
+            color: $grayDark;
+            font-weight: 600;
+        }
+    }
+
+    .info, .price{
+        margin: auto 0;
+    }
+
+    .info{
+        span{
+            font-weight: 600;
+        }
+    }
+
+    .price{
+        color: $colorPrimary ;
+    }
+
+  }

@@ -2,13 +2,20 @@
 
 import useOrders from "@/components/customComponents/useOrders";
 import styles from "./styles.module.scss";
+import OrderCard from "../orderCard";
 
 export default function OrderList () {
-    const { orders, loading } = useOrders();
-    console.log(orders)
+    const { orders, updateOrderStatus} = useOrders();
 
-    return (
-        <>
-        </>
-    )
+     if (!orders.length) {
+    return <p className={styles.empty}>Nenhum pedido encontrado.</p>;
+  }
+
+  return (
+    <div className={styles.list}>
+      {orders.map(order => (
+        <OrderCard key={order.id} order={order} updateOrderStatus={updateOrderStatus}/>
+      ))}
+    </div>
+  )
 }

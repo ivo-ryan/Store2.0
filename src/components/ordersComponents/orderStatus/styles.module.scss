@@ -1,0 +1,21 @@
+.badge{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span{
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display:block;
+    }
+
+    .pending{
+        background-color: #FBBF24;
+    }
+
+    .statusPaid{
+        background-color: #22C55E;
+    }
+
+}

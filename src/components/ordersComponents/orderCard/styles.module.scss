@@ -1,0 +1,104 @@
+@use "../../../app/colors.module.scss" as * ;
+
+.card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.date{
+    padding-top: 1rem ;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.right {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.toggleBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+
+  display: flex;
+  align-items: center;
+
+
+  transform: rotate(0deg);
+}
+
+.toggleBtn.open {
+
+  transform: rotate(180deg);
+}
+
+.items {
+  margin-top: 15px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.container{
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+
+    .buttons{
+        display: flex;
+        gap: 1rem;
+        transition: all .5s ease;
+        
+        button{
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            color: $textLight;
+            font-weight: 600;
+        }
+
+        .paid{
+            background-color: #22C55E;
+
+            &:hover{
+                background-color: #16A34A;
+            }
+        }
+
+        .failed{
+            background-color: #EF4444;
+
+            &:hover{
+                background-color: #DC2626;
+            }
+        }
+    }
+
+    .total {
+
+      text-align: right;
+      color: $colorPrimary;
+      font-size: 18px;
+      font-weight: 500;
+    
+      span{
+        color: $colorCard;
+      }
+    }
+}
+

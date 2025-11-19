@@ -36,14 +36,27 @@ export type OrderItemsProps = {
 }
 
 export type OrdersProps = {
+    id: number;
+    createdAt: string;
     customer: string;
     items: OrderItemsProps[];
     payment: {
         provider: string;
-        status: string;
+        status:  "PENDING" | "PAID" | "FAILED"
     };
-    status: string;
+    status:  "PAID" | "PENDING" | "CANCELED"
     total: number
+}
+
+export type PaymentProps ={
+    id: number;
+    provider: string;
+    status: "PENDING" | "PAID" | "FAILED"
+    amount: number;
+    createdAt: Date;
+    updatedAt: Date;
+    playgroundUrl: string | null;
+    orderId: number;
 }
 
 export const userService = {
@@ -169,5 +182,17 @@ export const userService = {
         });
 
         return res
+    },
+
+    updateOrder: async (paymentId: number, status: "PAID" | "FAILED") => {
+        const res:PaymentProps = await privateApi.post(`/payments/${paymentId}/simulate`, {
+            status
+        }).catch((error) => {
+            console.log(error.response.data.message);
+            return error.response;
+        });
+
+        return res
     }
+
 }
