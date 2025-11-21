@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import useProduct from "@/components/customComponents/useProduct";
 import styles from "./styles.module.scss";
 import ProductCard from "../productCard";
+import Loading from "../loading/loading";
 
 export default function SearchProduct() {
   const searchParams = useSearchParams();
-  const query = searchParams.get("query") || ""; // pega o valor da query
+  const query = searchParams.get("query") || ""; 
   const { products, loading } = useProduct();
 
   const [filtered, setFiltered] = useState(products);
@@ -26,7 +27,7 @@ export default function SearchProduct() {
     setFiltered(result);
   }, [query, products]);
 
-  if(loading) return <p className={styles.loading}>Carregando...</p>;
+  if(loading) return <div className={styles.loading}><Loading/></div>;
 
   return (
     <div className={styles.container}>
@@ -41,7 +42,7 @@ export default function SearchProduct() {
           ))}
         </div>
       ) : (
-        <p className={styles.noResult}>Nenhum produto encontrado 😕</p>
+        <div className={styles.noResult}><p>Nenhum produto encontrado!</p> <img src="/erro.gif" alt="gif error" /></div>
       )}
     </div>
   );

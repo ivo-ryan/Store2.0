@@ -13,6 +13,7 @@ import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
 import useCart from "../customComponents/useCart";
+import Loading from "../loading/loading";
 
 
 export default function SingleProduct() {
@@ -20,7 +21,7 @@ export default function SingleProduct() {
     const { loading, product } = useProduct();
     const { handleClickAddProductInCart } = useCart()
 
-    if (loading || !product[0]) return <p className={styles.loading}>Carregando...</p>;
+    if (loading || !product[0]) return <div className={styles.loading}><Loading/></div>;
 
     const idProduct = String(product[0].id);
 

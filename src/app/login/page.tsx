@@ -10,7 +10,9 @@ export default function Page () {
       <HeaderTop search={false} />
 
       <div className={styles.containerHeader}>
-          <HeaderNav/>
+          <div>
+            <HeaderNav/>
+          </div>
       </div>
 
       <LoginPage/>
