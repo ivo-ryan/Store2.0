@@ -58,10 +58,17 @@
     .cart{
       position: relative;
 
+      div{
+        display: inline-block;
+        position: absolute;
+        top: -12px;
+        right: -1px;
+      }
+
       span{
         position: absolute;
         top: -22px;
-        right: 0;
+        right: -1px;
         font-weight: 600;
         text-decoration: none;
         color: $textLight;

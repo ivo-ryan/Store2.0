@@ -7,15 +7,28 @@ export default function useFavorite(id: string) {
   const [productIsFavorite, setProductIsFavorite] = useState<boolean>(false);
   const [favoritesChange, setFavoritesChange] = useState<boolean>(false);
   const [favoriteLoading, setFavoriteLoading] = useState<boolean>(false);
+  
 
   const handleClickFavorite = async (productId: number) => {
-    await userService.addFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
+    try{
+      setFavoriteLoading(true);
+      await userService.addFavoriteProduct(productId);
+      setFavoritesChange(prev => !prev);
+    }
+    finally{
+      setFavoriteLoading(false);
+    }
   };
 
   const handleClickRemoveFavorite = async (productId: string) => {
-    await userService.removeFavoriteProduct(productId);
-    setFavoritesChange(prev => !prev);
+    try{
+      setFavoriteLoading(true);
+      await userService.removeFavoriteProduct(productId);
+      setFavoritesChange(prev => !prev);
+    }
+    finally{
+      setFavoriteLoading(false);
+    }
   };
 
   const storedUser = typeof window !== "undefined"
@@ -48,6 +61,7 @@ export default function useFavorite(id: string) {
     favoriteLoading,
     productIsFavorite,
     handleClickFavorite,
-    handleClickRemoveFavorite
+    handleClickRemoveFavorite,
+    favoritesChange
   };
 }

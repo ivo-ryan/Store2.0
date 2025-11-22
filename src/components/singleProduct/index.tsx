@@ -12,14 +12,14 @@ import { FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
-import useCart from "../customComponents/useCart";
 import Loading from "../loading/loading";
+import { useAuth } from "../customComponents/useAuth";
 
 
 export default function SingleProduct() {
 
     const { loading, product } = useProduct();
-    const { handleClickAddProductInCart } = useCart()
+    const { handleClickAddProductInCart } = useAuth();
 
     if (loading || !product[0]) return <div className={styles.loading}><Loading/></div>;
 

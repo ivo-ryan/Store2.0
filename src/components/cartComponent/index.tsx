@@ -5,9 +5,11 @@ import useCart from "../customComponents/useCart";
 import CartItem from "./cartItem";
 import OrderSummary from "./orderSummary";
 import styles from "./styles.module.scss";
+import { useAuth } from "../customComponents/useAuth";
 
 export default function Cart() {
-    const { products , handleClickAddProductInCart, handleClickRemoveProductInCart , hanldeClickCreateOrder, loading} = useCart();
+    const { products , hanldeClickCreateOrder, loading} = useCart();
+    const { handleClickAddProductInCart, handleClickRemoveProductInCart } = useAuth();
 
   return (
     <div className={styles.cartContainer}>

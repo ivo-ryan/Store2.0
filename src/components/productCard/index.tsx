@@ -7,6 +7,7 @@ import Link from "next/link";
 import useProduct from "../customComponents/useProduct";
 import useCart from "../customComponents/useCart";
 import FavoriteProduct from "../favoriteProduct";
+import { useAuth } from "../customComponents/useAuth";
 
 
 export default function ProductCard({
@@ -22,7 +23,7 @@ export default function ProductCard({
 {
 
   const { handleClickProduct} = useProduct();
-  const { handleClickAddProductInCart } = useCart();
+  const { handleClickAddProductInCart } = useAuth();
   return (
     <div className={styles.card}  >
       {isNew && <span className={styles.newTag}>NOVO</span>}

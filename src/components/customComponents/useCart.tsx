@@ -1,7 +1,7 @@
 "use client";
 
-import { CartProduct, userService } from "@/services/userService";
-import { useEffect, useState } from "react";
+import { userService } from "@/services/userService";
+import {  useState } from "react";
 import { useAuth } from "./useAuth";
 
 export default function useCart (){
@@ -9,17 +9,12 @@ export default function useCart (){
     const { productsCart , setCartChange, setProductsCart} = useAuth();
     const [ loading, setLoading ] = useState(false);
 
-    const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
-        const storedUser = sessionStorage.getItem("user");
+     const storedUser = typeof window !== "undefined"
+    ? sessionStorage.getItem("user")
+    : null;
 
-        if(!storedUser) return 
-
-        await userService.addProductInCart(productId, change);
-        setCartChange(prev => !prev);
-    };
 
     const hanldeClickCreateOrder = async () => {
-        const storedUser = sessionStorage.getItem("user");
 
         if(!storedUser) return ;
 
@@ -42,22 +37,12 @@ export default function useCart (){
         }
     }
 
-    const handleClickRemoveProductInCart = async (productId: string) => {
-        const storedUser = sessionStorage.getItem("user");
-
-        if(!storedUser) return 
-
-        await userService.deleteProductInCart(productId);
-        setCartChange(prev => !prev);
-    }
-
 
     
     return {
         products: productsCart,
         loading,
-        handleClickAddProductInCart,
-        handleClickRemoveProductInCart,
-        hanldeClickCreateOrder
+        hanldeClickCreateOrder,
+        storedUser
     }
 }

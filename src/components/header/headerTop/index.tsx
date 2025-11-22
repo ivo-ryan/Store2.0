@@ -7,10 +7,11 @@ import ProductFilter from "../productFilter";
 import { useAuth } from "@/components/customComponents/useAuth";
 import { useState } from "react";
 import UserMenu from "../userMenu";
+import Spinner from "@/components/loading/spinner";
 
 
 export default function HeaderTop({search= true}:{ search?: boolean }) {
-  const { productsCart, logout } = useAuth();
+  const { productsCart, logout, loading } = useAuth();
 
   const [ isOpen, setIsOpen ] = useState<"Open" | "Close">("Close");
   const storedUser = typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
@@ -21,6 +22,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
     logout();
     setIsOpen("Close");
   };
+
 
   return (
     <div className={styles.headerTop}>
@@ -60,6 +62,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
 
         <Link href="/favorites"><FiHeart /></Link>
         <Link href="/cart" className={styles.cart}> {
+          loading ? <div><Spinner/></div> :
           <span>{productsCart.length}</span>
 
         }

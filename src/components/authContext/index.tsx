@@ -14,7 +14,10 @@ interface AuthContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  registerUser: (name: string, email: string, password: string) => Promise<{register: boolean}>
+  registerUser: (name: string, email: string, password: string) => Promise<{register: boolean}>;
+  handleClickAddProductInCart: (productId: number, change?: number) => Promise<void>;
+  handleClickRemoveProductInCart: (productId : string) => Promise<void>;
+
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -34,13 +37,52 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedUser = sessionStorage.getItem("user");
     if (!storedUser) return;
 
-    const res = await userService.getProductsInCart();
-    setProductsCart(res);
+    try{
+      setLoading(true);
+      const res = await userService.getProductsInCart();
+      setProductsCart(res);
+    }
+    finally{
+      setLoading(false);
+    }
+
   };
+
+  const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
+        const storedUser = sessionStorage.getItem("user");
+
+        if(!storedUser) return 
+
+        try{
+          setLoading(true);
+          await userService.addProductInCart(productId, change);
+          setCartChange(prev => !prev);
+
+        }
+        finally{
+          setLoading(false);
+        }
+    };
+
+
+  const handleClickRemoveProductInCart = async (productId: string) => {
+        const storedUser = sessionStorage.getItem("user");
+
+        if(!storedUser) return 
+
+        try{
+          setLoading(true);
+          await userService.deleteProductInCart(productId);
+          setCartChange(prev => !prev);
+        }
+        finally{
+          setLoading(false);
+        }
+    }
 
   useEffect(() => {
     refreshCart();
-  }, [cartChange])
+  }, [cartChange]);
 
 
   useEffect(() => {
@@ -84,11 +126,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
+    if(!user) return;
+
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
     setToken(null);
     setUser(null);
     setIsLogout(true);
+    setCartChange(prev => !prev)
     router.push("/");
   };
 
@@ -120,7 +165,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       productsCart, 
       setCartChange, 
       setProductsCart,
-      loading
+      loading, 
+      handleClickAddProductInCart,
+      handleClickRemoveProductInCart
       }}>
       {children}
     </AuthContext.Provider>
