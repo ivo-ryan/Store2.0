@@ -1,8 +1,8 @@
 "use client"
 
 import useFavorites from "../customComponents/useFavorites";
-import Loading from "../loading/loading";
 import ProductCard from "../productCard";
+import SkeletonCard from "../skeletonCard";
 import styles from "./styles.module.scss";
 
 export default function FavoritesProducts () {
@@ -11,7 +11,9 @@ export default function FavoritesProducts () {
 
     const products = favorites.map(p => p.product);
 
-    if(loading) return <div className={styles.loading}><Loading/></div>
+    if(loading) return (
+        <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
+    )
     if(!storedUser) return <div>Usuário não efetuou o Login!</div>
 
     return (        

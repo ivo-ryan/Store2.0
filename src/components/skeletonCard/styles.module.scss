@@ -1,0 +1,81 @@
+@use "../../app/colors.module.scss" as *;
+
+.skeletonCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    background-color: $colorCard;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+  &:hover {
+    border-color: $accentBlue;
+    box-shadow: 0 0 20px rgba(10, 132, 255, 0.15);
+    transform: translateY(-4px);
+  }
+
+  a{
+    text-decoration: none;
+  }
+}
+
+$skeleton-bg: #e3e3e3;
+$skeleton-shimmer: linear-gradient(
+  90deg,
+  rgba(255, 255, 255, 0.1) 10%,
+  rgba(255, 255, 255, 1) 50%,
+  rgba(255, 255, 255, 0.1) 100%
+);
+
+
+.img,
+.title,
+.subtitle {
+  position: relative;
+  overflow: hidden;
+  background: $skeleton-bg;
+  border-radius: 8px;
+  width: 90%;
+}
+
+.img {
+  height: 100px;
+}
+
+.title {
+  height: 20px;
+  margin-top: 12px;
+}
+
+.subtitle {
+  height: 14px;
+  margin-top: 8px;
+}
+
+.img::after,
+.title::after,
+.subtitle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: $skeleton-shimmer;
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+

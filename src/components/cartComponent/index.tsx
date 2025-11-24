@@ -28,7 +28,7 @@ export default function Cart() {
             ))
           }
         </div>
-        <button className={styles.continueButton}><Link href="/">Continuar Comprando</Link></button>
+        <Link href="/" className={styles.continueButton}>Continuar Comprando</Link>
       </section>
 
       <section className={styles.orderSummarySection}>

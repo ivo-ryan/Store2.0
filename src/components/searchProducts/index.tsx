@@ -6,6 +6,7 @@ import useProduct from "@/components/customComponents/useProduct";
 import styles from "./styles.module.scss";
 import ProductCard from "../productCard";
 import Loading from "../loading/loading";
+import SkeletonCard from "../skeletonCard";
 
 export default function SearchProduct() {
   const searchParams = useSearchParams();
@@ -27,7 +28,9 @@ export default function SearchProduct() {
     setFiltered(result);
   }, [query, products]);
 
-  if(loading) return <div className={styles.loading}><Loading/></div>;
+  if(loading) return (
+        <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
+    )
 
   return (
     <div className={styles.container}>

@@ -5,7 +5,6 @@ import styles from "./styles.module.scss";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
 import useProduct from "../customComponents/useProduct";
-import useCart from "../customComponents/useCart";
 import FavoriteProduct from "../favoriteProduct";
 import { useAuth } from "../customComponents/useAuth";
 

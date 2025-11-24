@@ -34,6 +34,9 @@
 }
 
 .continueButton {
+  display: block;
+  width: 30%;
+  font-weight: 500;
   margin-top: 1.5rem;
   background: transparent;
   border: 1px solid $accentBlue;
@@ -42,14 +45,11 @@
   cursor: pointer;
   transition: 0.3s;
   
-  a{
     color: #fff;
     text-decoration: none;
-  }
 
   &:hover {
     background-color: #0869ca;    
-    border-color: #fff;
 
   }
 }

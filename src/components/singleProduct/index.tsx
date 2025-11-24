@@ -2,7 +2,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import useProduct from "../customComponents/useProduct";
-import HeaderNav from "../header/headerNav";
 import styles from "./styles.module.scss";
 import "swiper/css";
 import { Navigation, Pagination } from "swiper/modules";
@@ -12,8 +11,8 @@ import { FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
-import Loading from "../loading/loading";
 import { useAuth } from "../customComponents/useAuth";
+import SkeletonCard from "../skeletonCard";
 
 
 export default function SingleProduct() {
@@ -21,7 +20,9 @@ export default function SingleProduct() {
     const { loading, product } = useProduct();
     const { handleClickAddProductInCart } = useAuth();
 
-    if (loading || !product[0]) return <div className={styles.loading}><Loading/></div>;
+    if (loading || !product[0]) return (
+        <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
+    )
 
     const idProduct = String(product[0].id);
 
