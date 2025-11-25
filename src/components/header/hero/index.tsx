@@ -1,20 +1,61 @@
+"use client"
 
 import styles from "./styles.module.scss";
-import Image from "next/image";
-import exemple from "../../../../public/exemple.png"
+import { SwiperSlide , Swiper} from "swiper/react";
+import "swiper/css";import { Autoplay } from "swiper/modules";
+;
 
 export default function Hero() {
+
+  const imghero = [
+    { 
+      id: 1,
+      name: "Zona Gamer",
+      description: "Seu Próximo Nível Começa Aqui: Hardware e Conforto Inigualáveis.",
+      img: "/tecnologia.png"
+     },
+
+     {
+      id: 2,
+      name: "Street Style",
+      description: "Destaque-se: Elegância e Modernidade em Cada Detalhe.",
+      img: "/moda.png"
+     },
+
+     {
+      id: 3,
+      name: "Treino Hard",
+      description: "Seu Corpo, Sua Meta: A Nutrição que Você Precisa para ir Além.",
+      img: "/fitness.png"
+     }
+  ]
+
   return (
     <div className={styles.hero}>
-      <div className={styles.content}>
-        <h1>O FUTURO DO SOM. AGORA</h1>
-        <p>Experimente a próxima geração de áudio.</p>
-        <button>Descobrir Produtos</button>
-      </div>
+      <Swiper
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 3000, 
+            disableOnInteraction: false,  
+          }}
+          loop={true} 
+          slidesPerView={1}
+      >
+        {
+          imghero.map(i => (
+             <SwiperSlide key={i.id}>
+              <div className={styles.content} >
+                <h1>{i.name}</h1>
+                <p>{i.description}</p>
+                </div>
 
-      <div className={styles.imageWrapper}>
-        <Image src={exemple} alt="Headphone" priority />
-      </div>
+                <div className={styles.imageWrapper}>
+                <img src={i.img} alt={i.name} />
+              </div>
+             </SwiperSlide>
+          ))
+        }
+      </Swiper>
     </div>
   );
 }

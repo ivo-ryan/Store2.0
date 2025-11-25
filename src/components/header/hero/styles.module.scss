@@ -5,10 +5,15 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  width: 100%;
 
   .content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 600px;
+    height: 50vh;
     padding: 1rem 2rem;
     z-index: 2;
 

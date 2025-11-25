@@ -9,17 +9,17 @@ export default function CategoriesSection() {
     {
       id: "2",
       name: "Fitness",
-      image: "/creatina.png",
+      image: "/fitness-mini.png",
     },
     {
       id: "1",
       name: "Eletrônicos",
-      image: "/pc.png",
+      image: "/tecnologia-mini.png",
     },
     {
       id: "3",
       name: "Moda",
-      image: "/camiseta.png",
+      image: "/moda-mini.png",
     },
   ];
 

@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background-color: $colorCard;
+  background-color: #06080D;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   img {
@@ -21,7 +21,7 @@
   .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
