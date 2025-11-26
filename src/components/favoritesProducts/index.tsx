@@ -1,6 +1,7 @@
 "use client"
 
 import useFavorites from "../customComponents/useFavorites";
+import NotLogged from "../notLogged";
 import ProductCard from "../productCard";
 import SkeletonCard from "../skeletonCard";
 import styles from "./styles.module.scss";
@@ -14,7 +15,7 @@ export default function FavoritesProducts () {
     if(loading) return (
         <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
     )
-    if(!storedUser) return <div>Usuário não efetuou o Login!</div>
+    if(!storedUser) return <NotLogged/>
 
     return (        
 

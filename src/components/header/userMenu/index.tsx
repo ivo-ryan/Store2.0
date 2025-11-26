@@ -21,12 +21,14 @@ export default function UserMenu({ isLogged, onLogout }: Props) {
         </Link>
 
       {isLogged && (
-        <Link href="/orders" className={styles.item}>Meus Pedidos</Link>
-      )}
+       <>
+         <Link href="/orders" className={styles.item}>Meus Pedidos</Link>
           <button className={styles.item} onClick={onLogout}>
             Logout
           </button>
 
+       </>
+      )}
 
     </div>
 

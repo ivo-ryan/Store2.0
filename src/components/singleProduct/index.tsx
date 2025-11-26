@@ -17,14 +17,20 @@ import SkeletonCard from "../skeletonCard";
 
 export default function SingleProduct() {
 
-    const { loading, product } = useProduct();
-    const { handleClickAddProductInCart } = useAuth();
+    const { loading, product} = useProduct();
+    const { handleClickAddProductInCart , user} = useAuth();
 
     if (loading || !product[0]) return (
         <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
     )
 
     const idProduct = String(product[0].id);
+
+    const addProductInCart = (id: number) => {
+        if(!user) return;
+
+        handleClickAddProductInCart(id);
+    }
 
     return (
         <section className={styles.sectionContainer}>
@@ -77,7 +83,7 @@ export default function SingleProduct() {
                     </div>
 
                    <div className={styles.containerButton}>
-                      <button className={styles.cartButton} onClick={() => handleClickAddProductInCart(product[0].id)}>
+                      <button className={styles.cartButton} onClick={() => addProductInCart(product[0].id)}>
                             <FiShoppingCart />
                             Adicionar ao Carrinho
                         </button>

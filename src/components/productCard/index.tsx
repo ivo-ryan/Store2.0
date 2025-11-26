@@ -7,6 +7,8 @@ import Link from "next/link";
 import useProduct from "../customComponents/useProduct";
 import FavoriteProduct from "../favoriteProduct";
 import { useAuth } from "../customComponents/useAuth";
+import NotLogged from "../notLogged";
+import { useState } from "react";
 
 
 export default function ProductCard({
@@ -22,7 +24,17 @@ export default function ProductCard({
 {
 
   const { handleClickProduct} = useProduct();
-  const { handleClickAddProductInCart } = useAuth();
+  const { handleClickAddProductInCart , user} = useAuth();
+
+
+  const addProductInCart = (id: number) => {
+
+   if(!user) return 
+
+    handleClickAddProductInCart(id);
+
+  }
+
   return (
     <div className={styles.card}  >
       {isNew && <span className={styles.newTag}>NOVO</span>}
@@ -55,7 +67,7 @@ export default function ProductCard({
         </div>
       </Link>
 
-      <button className={styles.cartButton} onClick={() => handleClickAddProductInCart(id)}>
+      <button className={styles.cartButton} onClick={() => addProductInCart(id)}>
         <FiShoppingCart />
         Adicionar ao Carrinho
       </button>
