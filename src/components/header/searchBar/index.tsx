@@ -38,6 +38,13 @@ export default function SearchBar({
         placeholder="Buscar produtos..."
         {...register("query")}
         onChange={(e) => onSearch(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();          
+            handleSubmit(onSubmit)();    
+          }
+        }}
+        
       />
       <button type="submit" >
         <FiSearch />

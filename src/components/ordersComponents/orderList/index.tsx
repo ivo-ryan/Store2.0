@@ -3,12 +3,16 @@
 import useOrders from "@/components/customComponents/useOrders";
 import styles from "./styles.module.scss";
 import OrderCard from "../orderCard";
+import OrderEmpty from "../orderEmpty";
+import Loading from "@/components/loading/loading";
 
 export default function OrderList () {
-    const { orders, updateOrderStatus} = useOrders();
+  const { orders, updateOrderStatus, loading} = useOrders();
 
-     if (!orders.length) {
-    return <p className={styles.empty}>Nenhum pedido encontrado.</p>;
+  if(loading) return <div className={styles.container}><Loading/></div>
+
+  if (!orders.length) {
+    return <OrderEmpty/>;
   }
 
   return (

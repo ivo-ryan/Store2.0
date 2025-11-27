@@ -62,6 +62,7 @@ export default function useFavorite(id: string) {
     productIsFavorite,
     handleClickFavorite,
     handleClickRemoveFavorite,
-    favoritesChange
+    favoritesChange,
+    storedUser
   };
 }

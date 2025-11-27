@@ -13,18 +13,26 @@ import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
 import { useAuth } from "../customComponents/useAuth";
 import SkeletonCard from "../skeletonCard";
+import useCart from "../customComponents/useCart";
 
 
 export default function SingleProduct() {
 
     const { loading, product} = useProduct();
     const { handleClickAddProductInCart , user} = useAuth();
+    const { createSigleOrder} = useCart();
 
     if (loading || !product[0]) return (
         <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
     )
 
     const idProduct = String(product[0].id);
+
+    const buyProduct = async (id: number) => {
+        if(!user) return ;
+
+         createSigleOrder(id)    
+    }
 
     const addProductInCart = (id: number) => {
         if(!user) return;
@@ -87,7 +95,7 @@ export default function SingleProduct() {
                             <FiShoppingCart />
                             Adicionar ao Carrinho
                         </button>
-                        <button className={styles.cartButton}>
+                        <button className={styles.cartButton} onClick={() => buyProduct(product[0].id)}>
                             <FiShoppingCart />
                             Comprar Agora
                         </button>

@@ -7,12 +7,15 @@ import OrderSummary from "./orderSummary";
 import styles from "./styles.module.scss";
 import { useAuth } from "../customComponents/useAuth";
 import NotLogged from "../notLogged";
+import EmptyCart from "./emptyCart";
 
 export default function Cart() {
     const { products , hanldeClickCreateOrder, loading, storedUser} = useCart();
     const { handleClickAddProductInCart, handleClickRemoveProductInCart } = useAuth();
 
     if(!storedUser) return <NotLogged/>
+
+    if(products.length === 0) return <EmptyCart/>
 
   return (
     <div className={styles.cartContainer}>

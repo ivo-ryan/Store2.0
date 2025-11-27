@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  gap: 1rem;
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+}
+
+.iconBox {
+  width: 90px;
+  height: 90px;
+  color: #e85505;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  margin-top: 1rem;
+  background: #ff5a00;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: #e85505;
+}
