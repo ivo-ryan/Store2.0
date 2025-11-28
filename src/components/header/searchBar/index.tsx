@@ -31,17 +31,24 @@ export default function SearchBar({
     }
   };
 
+  const registerResult = register("query");
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.searchBox}>
       <input
         type="text"
         placeholder="Buscar produtos..."
-        {...register("query")}
-        onChange={(e) => onSearch(e.target.value)}
+        {...registerResult}
+       onChange={(e) => {
+          if (typeof registerResult.onChange === "function") {
+            registerResult.onChange(e);
+          }
+          onSearch(e.target.value);
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            e.preventDefault();          
-            handleSubmit(onSubmit)();    
+            e.preventDefault();
+            handleSubmit(onSubmit)();
           }
         }}
         
