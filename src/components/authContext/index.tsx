@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { CartProduct, userService } from "@/services/userService";
 
 import styles from "./styles.module.scss";
-import Loading from "../loading/loading";
 import SkeletonCard from "../skeletonCard";
 
 interface AuthContextProps {
@@ -157,7 +156,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   if (!isMounted) {
     return (
       <>
-        <div className={styles.container}><Loading/></div>
         <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
       </>
     )

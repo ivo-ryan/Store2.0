@@ -30,7 +30,14 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
     <div className={styles.headerTop}>
 
       <div className={styles.left}>
-        {/* Menu Hamburguer no Mobile */}
+
+        <div className={styles.logo}>
+          <img src="/logo.png" alt="Logo" />
+        </div>
+         {
+      search && <ProductFilter  />
+    }
+
         <div
           className={styles.hamburger}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -38,14 +45,13 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
           {menuOpen ? <FiX /> : <FiMenu />}
         </div>
 
-        <div className={styles.logo}>
-          <img src="/logo.png" alt="Logo" />
-        </div>
       </div>
        
-    {
+   <div className={styles.search}>
+     {
       search && <ProductFilter  />
     }
+   </div>
        {
               isOpen === "Open" && 
     <div className={styles.overlay} onClick={() => setIsOpen("Close")}></div>
@@ -87,13 +93,8 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
       {
         menuOpen && <MobileHeader
           handleLogout={handleLogout}
-          isLogged
-          isOpen="Open" 
           menuOpen
-          setIsOpen={setIsOpen}
           setMenuOpen={setMenuOpen}
-          loading
-          productsCart={productsCart.length}
           
         />
       }
