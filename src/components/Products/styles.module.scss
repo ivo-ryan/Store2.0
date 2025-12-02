@@ -7,10 +7,19 @@
         color: $textLight;
         padding-bottom: 2rem ;
     }
+
+    @media (max-width: 500px) {
+        padding: 1.4rem 10px ;
+    }
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
+
+    @media (max-width: 500px) {
+         grid-template-columns:  repeat(auto-fit, minmax(120px, .6fr));
+         gap: 10px;
+    }
   }

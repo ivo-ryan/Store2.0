@@ -16,4 +16,35 @@
     gap: 1.5rem;
 
   }
+
+  @media (max-width: 800px) {
+    h2{
+      font-size: 24px;
+    }
+
+    .grid{
+       grid-template-columns:  repeat(auto-fit, minmax(200px, .8fr));
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 2rem 10px;
+
+    h2{
+      font-size: 18px;
+    }
+
+   .grid{
+     grid-template-columns:  repeat(auto-fit, minmax(110px, .5fr));
+     gap: 10px;
+   }
+  }
+
+  @media (max-width: 340px) {
+    padding: 2rem 5px;
+    .grid{
+       grid-template-columns:  repeat(auto-fit, minmax(90px, .4fr));
+       gap: 4px;
+    }
+  }
 }

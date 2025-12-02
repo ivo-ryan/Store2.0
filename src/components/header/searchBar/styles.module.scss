@@ -5,9 +5,16 @@
     max-width: 600px;
     margin: 0 2rem;
     display: flex;
+    justify-content: center;
     background-color: $textLight;
     border-radius: 8px;
     overflow: hidden;
+      transition: all .5s ease;
+  
+
+    @media (max-width: 500px) {
+      margin: 0 10px 0 0 ;
+    }
 
     input {
       width: 100%;
@@ -19,6 +26,13 @@
       font-weight: 600;
       font-size: 1rem;
       outline: none;
+  
+
+      @media (max-width: 500px) {
+        font-size: 14px;
+        padding: .5rem 10px;
+       
+      }
     }
 
     button {
@@ -33,6 +47,10 @@
 
       svg {
         font-size: 1.2rem;
+      }
+
+      @media (max-width: 375px) {
+        padding: 0 8px;
       }
     }
   }

@@ -6,6 +6,7 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
+  transition: all .5s ease;  
 
   .content {
     position: absolute;
@@ -57,21 +58,48 @@
 
     img {
       object-fit: cover;
+      object-position: center center;
       width: 100%;
       height: 500px;
     }
+
+    .imgMobile{
+      display: none;
+    }
   }
 
-  @media (max-width: 900px) {
-    flex-direction: column;
-    text-align: center;
 
-    .content {
-      margin-bottom: 2rem;
+  @media (max-width: 500px) {
+
+    .content{
+      height: 400px;
+      width: 90%;
+      justify-content: flex-end;
+      background: rgba(17, 17, 17, 0.068);
+
+      h1{
+        font-size: 36px;
+      }
+
+      p{
+        font-size: 18px;
+        font-weight: 500;
+        color: #ccc;
+      }
     }
 
-    .imageWrapper img {
-      max-width: 80%;
+    .imageWrapper{
+      img{
+        height: 400px;
+      }
+
+      .img{
+        display: none;
+      }
+
+      .imgMobile{
+        display: block;
+      }
     }
   }
 }

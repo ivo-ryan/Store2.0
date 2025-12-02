@@ -60,4 +60,32 @@
       opacity: 1;
     }
   }
+
+  @media (max-width: 500px) {
+    img{
+      width: 220px;
+      height: 150px;
+      object-position: center ;
+    }
+
+   .overlay{
+    padding: 20px 5px;
+    align-items: center;
+
+    h3{
+      font-size: 16px;
+    }
+
+    button{
+      border-radius: 2px;
+      padding: .3rem .5rem ;
+    }
+   }
+  }
+
+  @media (max-width: 340px) {
+    img{
+      width: 180px;
+    }
+  }
 }

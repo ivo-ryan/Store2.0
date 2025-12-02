@@ -49,7 +49,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
        
    <div className={styles.search}>
      {
-      search && <ProductFilter  />
+      search && menuOpen && <ProductFilter  />
     }
    </div>
        {

@@ -18,7 +18,7 @@ export default function CategoriesSection() {
     },
     {
       id: "3",
-      name: "Moda",
+      name: "Style",
       image: "/moda-mini.png",
     },
   ];

@@ -34,6 +34,17 @@
       margin-bottom: 1rem;
     }
   }
+
+  @media (max-width: 500px) {
+    .imageBox{
+      width: 60px;
+      height: 60px;
+
+      img{
+        height: 50px;
+      }
+    }
+  }
 }
 
 
@@ -51,5 +62,17 @@
     font-size: 1rem;
     font-weight: 500;
     color: $accentBlue;
+  }
+
+  @media (max-width: 500px) {
+    padding: 8px;
+
+    h3{
+      font-size: 14px;
+    }
+
+    p{
+      font-size: 14px;
+    }
   }
 }

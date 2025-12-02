@@ -11,6 +11,8 @@
     z-index: 2;
     background-color: transparent;
     padding: 0.75rem 2rem;
+    transition: all .5s ease;
+  
 
     ul {
         display: flex;
@@ -27,6 +29,15 @@
             color: $textLight ;
             background-color: $accentBlue;
         }
+        }
+    }
+
+    @media (max-width: 500px) {
+        padding: .5rem;
+
+        ul li a{
+            padding: 8px;
+            font-size: 14px;
         }
     }
 }
