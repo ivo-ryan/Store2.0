@@ -5,6 +5,11 @@
   align-items: center;
   justify-content: center;
   height: 80vh;
+  width: 100%;
+
+  @media (max-width: 500px) {
+    height: 65vh;
+  }
 }
 
 .form {
@@ -109,6 +114,14 @@
       }
     }
 
+  }
+
+  @media (max-width: 500px) {
+    max-width: 320px;
+  }
+
+  @media (max-width: 320px) {
+    max-width: 300px;
   }
 }
 

@@ -10,6 +10,14 @@
         padding: 0 2rem;
         color: $textLight;
     }
+
+    @media (max-width: 500px) {
+        gap: 1rem;
+       h2{
+        padding: 0 10px;
+        font-size: 22px;
+       }
+    }
 }
 
 .grid{
@@ -17,6 +25,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
+
+    @media (max-width: 500px) {
+        padding: 1rem 10px;
+         grid-template-columns:  repeat(auto-fit, minmax(130px, .7fr));
+         gap: 10px;
+    }
 }
 
 .slideProduct{
@@ -25,6 +39,12 @@
     align-items: center;
     background-color: $secondaryDarkBg;
     justify-content: space-evenly;
+    transition: all .5s ease;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 
@@ -47,6 +67,19 @@
         object-fit: contain;
         filter: drop-shadow(0 0 4px $accentBlue);
     }
+
+    @media (max-width: 500px) {
+        width: 70%;
+        height: 200px;
+        margin-bottom: 2rem;
+        img{
+            max-height: 200px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        width: 90%;
+    }
 }
 
 .info{
@@ -55,6 +88,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    transition: all .5s ease;
 
     .newTag {
         position: absolute;
@@ -63,6 +97,7 @@
         background: $accentBlue;
         color: #fff;
         font-size: 1.2rem;
+        z-index: 2;
         font-weight: 600;
         border-radius: 30px;
         padding: 0.25rem 0.8rem;
@@ -107,12 +142,13 @@
         background: $colorPrimary;
         color: #fff;
         border: none;
-        border-radius: 10px;
+        width: 50%;
+        border-radius: 5px;
         padding: 0.8rem 1.5rem;
-        font-weight: 600;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
         transition: background 0.2s;
 
@@ -122,7 +158,23 @@
 
         svg {
         display: inline-block;
-        font-size: 1.1rem;
+        font-size: 20px;
+        }
+    }
+
+    .buyButton{
+        background-color: #28A745;
+        outline:none;
+        color: #fff;
+        border: none;
+        width: 50%;
+        border-radius: 5px;
+        padding: 0.8rem 1.5rem;
+        font-weight: 600;
+        transition: all .5s ease;
+
+        &:hover{
+            background-color: #22C55E;
         }
     }
 
@@ -133,7 +185,71 @@
         background: transparent;
         border: none;
   }
+
+  @media (max-width: 768px) {
+        width: 40%;
+
+        .newTag{
+            font-size: 1rem;
+        }
+
+        h2{
+        padding: 0;
+            font-size: 25px;
+        }
+
+        .price{
+            .current{
+                font-size: 22px;
+            }
+        }
+        .cartButton , .buyButton{
+            padding: 10px 20px;
+            font-size: 12px;
+        }
+
+        .cartButton{
+            svg{
+                font-size: 16px;
+            }
+        }
     
+    }
+
+    @media (max-width: 500px) {
+        width: 70%;
+        gap: 10px;
+        .newTag{
+            top: -2.5rem;
+        }
+
+        h2{
+            font-size: 22px;
+        }
+
+        .rating{
+            font-size: 20px;
+        }
+
+        .price{
+            .current{
+                font-size: 20px;
+            }
+        }
+    }
+
+    @media (max-width: 375px) {
+        width: 80%;
+    }
+
+    @media (max-width: 320px) {
+        .containerButton{
+            gap: 5px;
+        }
+        .buyButton{
+            padding: 10px;
+        }
+    }
 }
 
 .featureProduct{
@@ -156,4 +272,5 @@
         color: $textMuted;
         font-weight: 600;
     }
+
 }

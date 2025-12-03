@@ -29,14 +29,13 @@ export default function FeaturedProductsSection({products}: props) {
         navigation
         pagination={{ clickable: true }}
         breakpoints={{
-          320: { slidesPerView: 1 },
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
           1280: { slidesPerView: 4 },
+          1024: { slidesPerView: 3 },
+          300: { slidesPerView: 2, spaceBetween: 10 }
         }}
         >
             {products.map((product) => (
-              <SwiperSlide key={product.id} className={styles.swiperSlide}>
+              <SwiperSlide key={product.id} >
                 <ProductCard  {...product} />
               </SwiperSlide>
             ))}

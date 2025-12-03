@@ -36,7 +36,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <>
+      <div className={`
+        ${
+          !isRegisted && styles.container
+        }
+      `}>
       <form className={`${styles.form} 
         ${
             isRegisted ? styles.hide : styles.show
@@ -68,10 +73,15 @@ export default function LoginPage() {
         </button>
       </form>
 
-        {
+      <div>
+       
+      </div>
+
+    </div>
+
+    {
             isRegisted && <RegisterForm setIsRegisted={setIsRegisted} />
         }
-       
-    </div>
+    </>
   );
 }

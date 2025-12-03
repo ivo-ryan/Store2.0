@@ -7,13 +7,13 @@ import "swiper/css";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FiShoppingCart } from "react-icons/fi";
 import FeatureProduct from "./featureProduct";
 import CategoryProducts from "../categories/categoryProducts";
 import FavoriteProduct from "../favoriteProduct";
 import { useAuth } from "../customComponents/useAuth";
 import SkeletonCard from "../skeletonCard";
 import useCart from "../customComponents/useCart";
+import { FaCartPlus } from "react-icons/fa";
 
 
 export default function SingleProduct() {
@@ -92,12 +92,10 @@ export default function SingleProduct() {
 
                    <div className={styles.containerButton}>
                       <button className={styles.cartButton} onClick={() => addProductInCart(product[0].id)}>
-                            <FiShoppingCart />
-                            Adicionar ao Carrinho
+                            <FaCartPlus />
                         </button>
-                        <button className={styles.cartButton} onClick={() => buyProduct(product[0].id)}>
-                            <FiShoppingCart />
-                            Comprar Agora
+                        <button className={styles.buyButton} onClick={() => buyProduct(product[0].id)}>
+                            Compre Agora
                         </button>
                    </div>
                 </div>

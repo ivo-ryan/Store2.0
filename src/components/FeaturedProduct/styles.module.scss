@@ -8,15 +8,22 @@
     font-size: 1.8rem;
     margin-bottom: 2rem;
   }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
   
   :global(.swiper) {
     padding-top: 10px;
     height: 400px;
   }
+
+  @media (max-width: 500px) {
+    padding: 2rem 10px ;
+
+    :global(.swiper){
+      height: 310px ;
+    }
+
+    h2{
+      font-size: 24px;
+    }
+  }
+
 }

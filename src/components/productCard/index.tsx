@@ -2,13 +2,11 @@
 
 import { ProductType } from "@/services/productsServices";
 import styles from "./styles.module.scss";
-import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
 import useProduct from "../customComponents/useProduct";
 import FavoriteProduct from "../favoriteProduct";
 import { useAuth } from "../customComponents/useAuth";
-import NotLogged from "../notLogged";
-import { useState } from "react";
+import { FaCartPlus } from "react-icons/fa";
 
 
 export default function ProductCard({
@@ -68,8 +66,7 @@ export default function ProductCard({
       </Link>
 
       <button className={styles.cartButton} onClick={() => addProductInCart(id)}>
-        <FiShoppingCart />
-        Adicionar ao Carrinho
+        <FaCartPlus />
       </button>
     </div>
   );

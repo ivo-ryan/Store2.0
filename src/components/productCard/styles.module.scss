@@ -62,13 +62,14 @@
     background: $accentBlue;
     color: #fff;
     border: none;
+    width: 90%;
     border-radius: 10px;
     padding: 0.8rem 1.5rem;
     font-weight: 600;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     transition: background 0.2s;
 
     &:hover {
@@ -100,7 +101,7 @@
   }
 
    @media (max-width: 500px) {
-
+    border-radius: 5px;
       padding: 10px 0;
       .imgCard{
         height: 100px;
@@ -114,13 +115,36 @@
         .current{
           font-size: 16px;
         }
+
+        .old{
+          font-size: 13px;
+        }
+      }
+
+      .favorite{
+        top: 4px;
+        right: 4px;
       }
 
       .cartButton{
-        padding: 10px 10px;
-        font-size: 10px;
-        font-weight: 400;
-        width: 90%;
+        padding: 10px 5px;
+        gap: 3px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .cartButton{
+        svg{
+          font-size: 12px;
+        }
+      }
+    }
+
+    @media (max-width: 330px) {
+      .cartButton{
+        svg{
+          font-size: 11px;
+        }
       }
     }
   
