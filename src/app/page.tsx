@@ -17,8 +17,8 @@ export default async function Home() {
     <div className={styles.page}>
         <Header/>
         <CategoriesSection/>
-        <FeaturedProductsSection products={newestProducts.data} />
-        <Products products={products.data.data} />
+        <FeaturedProductsSection products={newestProducts} />
+        <Products products={products} />
         <Footer/>
     </div>
   );

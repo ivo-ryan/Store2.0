@@ -3,12 +3,16 @@ import styles from "./styles.module.scss";
 import ProductCard from "../productCard";
 
 interface props {
-    products: ProductType[]
+    products: {
+        data: {
+            data: ProductType[]
+        }
+    }
 }
 
 export default function  Products ({ products }: props){
 
-    const productsFilter = products.filter(p => !p.featured );
+    const productsFilter = products.data.data.filter(p => !p.featured );
     
     return  (
         <section className={styles.sectionContainer}>
