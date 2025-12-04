@@ -44,7 +44,7 @@
       transition: ease 0.2s;
 
       &:hover {
-        background: lighten($accentBlue, 5%);
+        background: $accentBlue;
       }
     }
   }

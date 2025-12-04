@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import styles from "./styles.module.scss";
 import { FiInstagram, FiFacebook, FiTwitter, FiYoutube, FiSend } from "react-icons/fi";
 
@@ -17,10 +18,10 @@ export default function Footer() {
         <div className={styles.column}>
           <h4>Links Rápidos</h4>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/produtos">Produtos</a></li>
-            <li><a href="/promocoes">Promoções</a></li>
-            <li><a href="/contato">Contato</a></li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/produtos">Produtos</Link></li>
+            <li><Link href="/promocoes">Promoções</Link></li>
+            <li><Link href="/contato">Contato</Link></li>
           </ul>
         </div>
 

@@ -70,10 +70,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
 
     &:hover {
-      background: lighten($accentBlue, 5%);
+      background: $accentBlue ;
     }
 
     svg {
