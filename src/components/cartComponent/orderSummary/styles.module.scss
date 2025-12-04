@@ -8,6 +8,14 @@
   h2 {
     font-size: 1.5rem;
   }
+
+  @media (max-width: 600px) {
+    gap: 10px;
+
+    h2{
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .productsBox {
@@ -48,6 +56,10 @@
     top: 10px;
     font-weight: 600;
   }
+
+  @media (max-width: 600px) {
+    border-radius: 6px;
+  }
 }
 
 
@@ -73,6 +85,10 @@
       border-color: $colorPrimary;
     }
   }
+
+  @media (max-width: 600px) {
+    padding: 10px 0;
+  }
 }
 
 .totalBox {
@@ -83,6 +99,10 @@
 
   strong {
     color: $accentBlue;
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px 0;
   }
 }
 

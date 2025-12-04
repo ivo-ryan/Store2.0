@@ -43,7 +43,7 @@ export default function CartItem({
           <button onClick={() => handleClickAddProductInCart(product.id)}>+</button>
         </div>
       </div>
-      <button className={styles.removeButton} onClick={() => handleClickRemoveProductInCart(String(product.id))} >Remover <FaTrash/>  </button>
+      <button className={styles.removeButton} onClick={() => handleClickRemoveProductInCart(String(product.id))} ><span>Remover</span> <FaTrash/>  </button>
     </div>
   );
 }

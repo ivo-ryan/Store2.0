@@ -6,6 +6,10 @@
   border-radius: 8px;
   margin-bottom: 18px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+  @media (max-width: 375px) {
+    padding: 8px;
+  }
 }
 
 .date{
@@ -56,6 +60,7 @@
     display: flex;
     margin-top: 12px;
     justify-content: space-between;
+    align-items: center;
 
     .buttons{
         display: flex;
@@ -98,6 +103,20 @@
     
       span{
         color: $colorCard;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .buttons{
+        gap: 5px;
+
+        button{
+          padding: 5px 10px;
+        }
+      }
+
+      .total{
+        font-size: 14px;
       }
     }
 }

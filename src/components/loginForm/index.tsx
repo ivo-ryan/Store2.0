@@ -10,8 +10,8 @@ import { useAuth } from "@/components/customComponents/useAuth";
 import RegisterForm from "../registerForm";
 
 const loginSchema = z.object({
-  email: z.email("Email inválido"),
-  password: z.string().min(4, "A senha deve ter no mínimo 6 caracteres"),
+  email: z.email("Email inválido!"),
+  password: z.string().min(4, "Senha inválida!"),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;

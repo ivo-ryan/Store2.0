@@ -1,5 +1,13 @@
 .list{
     padding: 1rem 2rem ;
+
+    @media (max-width: 600px) {
+        padding: 1rem 15px;
+    }
+
+    @media (max-width: 375px) {
+        padding: 1rem 10px;
+    }
 }
 
 .container{

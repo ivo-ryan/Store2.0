@@ -39,4 +39,30 @@
         color: $colorPrimary ;
     }
 
+    @media (max-width: 600px) {
+        display: flex;
+        
+        .imgContainer{
+            gap: 1rem;
+        }
+    }
+
+    @media (max-width:320px) {
+        gap: 10px;
+        .imgContainer{
+            gap: 5px;
+
+            img{
+                width: 40px;
+            }
+        }
+
+        .info{
+            font-size: 14px;
+            span{
+                font-size: 14px;
+            }
+        }
+    }
+
   }
