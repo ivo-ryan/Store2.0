@@ -7,6 +7,9 @@
         color: $textLight;
         padding-bottom: 2rem ;
     }
+     @media (max-width: 768px) {
+      padding: 1rem;
+    }
 
     @media (max-width: 600px) {
         padding: 1.4rem 10px ;
@@ -18,8 +21,12 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
 
+     @media (max-width: 768px) {
+        gap: 10px;
+      grid-template-columns:  repeat(auto-fit, minmax(200px, .7fr));
+    }
+
     @media (max-width: 600px) {
-         grid-template-columns:  repeat(auto-fit, minmax(130px, .7fr));
-         gap: 10px;
+         grid-template-columns:  repeat(auto-fit, minmax(140px, .7fr));
     }
   }
