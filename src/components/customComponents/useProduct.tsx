@@ -49,7 +49,7 @@ export default function useProduct (){
         const fetchData = async () => {
             setLoading(true);
             try{
-                const res = await productsService.getAll();
+                const res: ProductType[] = await productsService.getAll();
                 setProducts(res);
             }
             finally{
