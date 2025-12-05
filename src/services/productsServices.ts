@@ -34,7 +34,7 @@ export const productsService = {
             return error.response;
         });
 
-        return res
+        return res.data.data
     },
 
     getNewest: async () => {
@@ -43,7 +43,7 @@ export const productsService = {
             return error.response;
         });
 
-        return res;
+        return res.data;
     },
 
     getProductById: async (id: string) => {

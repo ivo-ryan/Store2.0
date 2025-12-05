@@ -11,9 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 interface props {
-  products: {
-    data: ProductType[]
-  }
+  products: ProductType[]
 }
 
 export default function FeaturedProductsSection({products}: props) {
@@ -36,7 +34,7 @@ export default function FeaturedProductsSection({products}: props) {
           300: { slidesPerView: 2, spaceBetween: 10 }
         }}
         >
-            {products.data.map((product) => (
+            {products.map((product) => (
               <SwiperSlide key={product.id} >
                 <ProductCard  {...product} />
               </SwiperSlide>

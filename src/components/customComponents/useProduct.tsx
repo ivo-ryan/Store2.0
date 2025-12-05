@@ -50,7 +50,7 @@ export default function useProduct (){
             setLoading(true);
             try{
                 const res = await productsService.getAll();
-                setProducts(res.data.data);
+                setProducts(res);
             }
             finally{
                 setLoading(false);
