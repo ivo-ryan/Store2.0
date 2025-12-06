@@ -18,6 +18,7 @@
   }
 
   @media (max-width: 800px) {
+     padding: 1rem 10px;
     h2{
       font-size: 24px;
     }
@@ -28,23 +29,21 @@
   }
 
   @media (max-width: 500px) {
-    padding: 2rem 10px;
 
     h2{
       font-size: 18px;
     }
 
    .grid{
-      grid-template-columns:  repeat(auto-fit, minmax(140px, .7fr));
-     gap: 10px;
+      grid-template-columns:  repeat(auto-fit, minmax(160px, .7fr));
+      gap: 10px;
    }
   }
 
-  @media (max-width: 340px) {
-    padding: 2rem 5px;
-    .grid{
-       grid-template-columns:  repeat(auto-fit, minmax(90px, .4fr));
-       gap: 4px;
+
+    @media (max-width: 375px) {
+      .grid{
+        grid-template-columns:  repeat(auto-fit, minmax(130px, .7fr));
+      }
     }
-  }
 }

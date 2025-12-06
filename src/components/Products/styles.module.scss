@@ -22,11 +22,15 @@
     gap: 1.5rem;
 
      @media (max-width: 768px) {
-        gap: 10px;
+      gap: 10px;
       grid-template-columns:  repeat(auto-fit, minmax(200px, .7fr));
     }
 
-    @media (max-width: 600px) {
-         grid-template-columns:  repeat(auto-fit, minmax(140px, .7fr));
+    @media (max-width: 500px) {
+      grid-template-columns:  repeat(auto-fit, minmax(160px, .7fr));
+    }
+
+    @media (max-width: 375px) {
+      grid-template-columns:  repeat(auto-fit, minmax(130px, .7fr));
     }
   }

@@ -30,18 +30,22 @@ export const productsService = {
                 page: 1
             }
         }).catch((error) => {
-            console.log(error.response.data.message);
-            return error.response;
+            console.log("Erro:", error?.response?.data || error.message);
+            return null;
         });
+
+    if (!res) return null;
 
         return res.data.data
     },
 
     getNewest: async () => {
-        const res = await publicApi.get("/products/newest").catch((error) => {
-            console.log(error.response.data.message);
-            return error.response;
+        const res = await publicApi.get("/products/newest") .catch((error) => {
+            console.log("Erro:", error?.response?.data || error.message);
+            return null;
         });
+
+    if (!res) return null;
 
         return res.data;
     },

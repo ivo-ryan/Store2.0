@@ -65,7 +65,6 @@ export default function useCart (){
 
     
     return {
-        products: productsCart,
         loading,
         hanldeClickCreateOrder,
         storedUser,

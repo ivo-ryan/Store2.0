@@ -36,13 +36,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
 
-    const refreshCart = async () => {
-    const storedUser = sessionStorage.getItem("user");
-    if (!storedUser) return;
+  const refreshCart = async (authToken?: string) => {
+    const finalToken = authToken ?? sessionStorage.getItem("token");
+    if (!finalToken) return;
+    console.log(finalToken)
 
     try{
       setLoading(true);
-      const res = await userService.getProductsInCart();
+      const res = await userService.getProductsInCart(finalToken);
+      console.log(`Cheguei aqui!, ${res}`)
+      console.log(res)
       setProductsCart(res);
     }
     finally{
@@ -52,9 +55,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleClickAddProductInCart = async ( productId: number, change: number = 1 ) => {
-        const storedUser = sessionStorage.getItem("user");
 
-        if(!storedUser) return 
+        if(!token) return; 
 
         try{
           setLoading(true);
@@ -69,9 +71,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   const handleClickRemoveProductInCart = async (productId: string) => {
-        const storedUser = sessionStorage.getItem("user");
 
-        if(!storedUser) return 
+        if(!token) return; 
 
         try{
           setLoading(true);
@@ -84,7 +85,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
   useEffect(() => {
-    refreshCart();
+    if(!token) return ;
+    refreshCart(token);
   }, [cartChange]);
 
 
@@ -120,6 +122,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       setToken(data.token);
       setUser({ email });
+
+      await refreshCart(data.token);
 
       router.push("/");
     } catch (error) {

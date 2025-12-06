@@ -10,12 +10,14 @@ import NotLogged from "../notLogged";
 import EmptyCart from "./emptyCart";
 
 export default function Cart() {
-    const { products , hanldeClickCreateOrder, loading, storedUser} = useCart();
-    const { handleClickAddProductInCart, handleClickRemoveProductInCart } = useAuth();
+    const { hanldeClickCreateOrder, loading, storedUser} = useCart();
+    const { handleClickAddProductInCart, handleClickRemoveProductInCart, productsCart } = useAuth();
 
     if(!storedUser) return <NotLogged/>
 
-    if(products.length === 0) return <EmptyCart/>
+    console.log( productsCart)
+
+    if(productsCart.length === 0) return <EmptyCart/>
 
   return (
     <div className={styles.cartContainer}>
@@ -26,7 +28,7 @@ export default function Cart() {
             loading && <p>Carregando...</p>
           }
           {
-            products.map(i => (
+            productsCart.map(i => (
                 <CartItem key={i.productId} 
                 handleClickAddProductInCart={handleClickAddProductInCart} 
                 handleClickRemoveProductInCart={handleClickRemoveProductInCart} 
@@ -40,7 +42,7 @@ export default function Cart() {
       <section className={styles.orderSummarySection}>
            {
             loading ? <p>Carregando...</p> :
-           <OrderSummary products={products} hanldeClickCreateOrder={hanldeClickCreateOrder}/>
+           <OrderSummary products={productsCart} hanldeClickCreateOrder={hanldeClickCreateOrder}/>
           }
       </section>
     </div>
