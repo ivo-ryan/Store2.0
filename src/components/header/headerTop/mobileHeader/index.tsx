@@ -22,8 +22,6 @@ export default function MobileHeader ({ handleLogout , menuOpen, setMenuOpen }: 
   const [ isOpen, setIsOpen ] = useState<"Open" | "Close">("Close");
     const { productsCart, loading, user } = useAuth();
     const isLogged = !!user;
-
-    console.log(productsCart.length)
   
     return (
     <>

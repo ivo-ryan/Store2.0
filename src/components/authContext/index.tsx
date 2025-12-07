@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try{
       setLoading(true);
       const res = await userService.getProductsInCart();
-      console.log(res)
       setProductsCart(res);
     }
     finally{
