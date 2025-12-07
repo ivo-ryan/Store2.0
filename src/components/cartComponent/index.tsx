@@ -15,8 +15,6 @@ export default function Cart() {
 
     if(!storedUser) return <NotLogged/>
 
-    console.log( productsCart)
-
     if(productsCart.length === 0) return <EmptyCart/>
 
   return (

@@ -89,9 +89,11 @@
       
       margin-top: 13px;
 
-      div {
+      .spinner {
         display: inline-block;
         position: absolute;
+        top: -19px;
+        left: 0;        
       }
 
       span {

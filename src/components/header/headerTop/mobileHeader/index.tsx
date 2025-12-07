@@ -22,6 +22,8 @@ export default function MobileHeader ({ handleLogout , menuOpen, setMenuOpen }: 
   const [ isOpen, setIsOpen ] = useState<"Open" | "Close">("Close");
     const { productsCart, loading, user } = useAuth();
     const isLogged = !!user;
+
+    console.log(productsCart.length)
   
     return (
     <>
@@ -61,7 +63,7 @@ export default function MobileHeader ({ handleLogout , menuOpen, setMenuOpen }: 
         <div className={styles.menuLinks}>
           <Link href="/favorites"><FiHeart /><p>Favoritos</p></Link>
         <Link href="/cart" className={styles.cart}> {
-          loading ? <div><Spinner/></div> :
+          loading ? <div className={styles.spinner}><Spinner/></div> :
           <span>{productsCart.length}</span>
 
         }

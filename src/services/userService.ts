@@ -135,12 +135,8 @@ export const userService = {
         return res
     },
 
-    getProductsInCart: async (token?: string) => {
-        const res = await privateApi.get("/cart", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).catch((error) => {
+    getProductsInCart: async () => {
+        const res = await privateApi.get("/cart").catch((error) => {
             console.log(error.response.message);
             return error.response;
         });

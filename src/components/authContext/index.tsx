@@ -36,15 +36,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
 
-  const refreshCart = async (authToken?: string) => {
-    const finalToken = authToken ?? sessionStorage.getItem("token");
-    if (!finalToken) return;
-    console.log(finalToken)
-
+  const refreshCart = async () => {
+    if (!token) return ;
     try{
       setLoading(true);
-      const res = await userService.getProductsInCart(finalToken);
-      console.log(`Cheguei aqui!, ${res}`)
+      const res = await userService.getProductsInCart();
       console.log(res)
       setProductsCart(res);
     }
@@ -86,8 +82,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if(!token) return ;
-    refreshCart(token);
-  }, [cartChange]);
+    refreshCart();
+  }, [cartChange, token]);
 
 
   useEffect(() => {
@@ -123,7 +119,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setToken(data.token);
       setUser({ email });
 
-      await refreshCart(data.token);
+      setCartChange(prev => !prev);
 
       router.push("/");
     } catch (error) {
@@ -140,7 +136,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken(null);
     setUser(null);
     setIsLogout(true);
-    setCartChange(prev => !prev)
+    setCartChange(prev => !prev);
+    setProductsCart([]);
     router.push("/");
   };
 
