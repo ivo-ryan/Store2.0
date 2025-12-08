@@ -18,7 +18,7 @@ export default function FeaturedProductsSection({products}: props) {
 
 
   return (
-    <section className={styles.featured}>
+    <section className={styles.featured} id="promocoes">
       <h2>Produtos em Destaque</h2>
 
       <Swiper       

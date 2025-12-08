@@ -16,9 +16,13 @@ export default function UserMenu({ isLogged, onLogout }: Props) {
     <>
         <div className={styles.container}>
 
+      {
+        !isLogged &&
         <Link href="/login" className={styles.item}>
           Login
         </Link>
+
+      }
 
       {isLogged && (
        <>

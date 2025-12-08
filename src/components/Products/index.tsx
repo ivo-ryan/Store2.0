@@ -11,7 +11,7 @@ export default function  Products ({ products }: props){
     const productsFilter = products.filter(p => !p.featured );
     
     return  (
-        <section className={styles.sectionContainer}>
+        <section className={styles.sectionContainer} id="produtos">
 
             <h2>Outros Produtos</h2>
 

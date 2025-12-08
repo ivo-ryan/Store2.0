@@ -1,7 +1,8 @@
 
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import { FiInstagram, FiFacebook, FiTwitter, FiYoutube, FiSend } from "react-icons/fi";
+import { FiInstagram,FiSend, FiLinkedin } from "react-icons/fi";
+import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -19,9 +20,9 @@ export default function Footer() {
           <h4>Links Rápidos</h4>
           <ul>
             <li><Link href="/">Home</Link></li>
-            <li><Link href="/produtos">Produtos</Link></li>
-            <li><Link href="/promocoes">Promoções</Link></li>
-            <li><Link href="/contato">Contato</Link></li>
+            <li><Link href="/#produtos">Produtos</Link></li>
+            <li><Link href="/#promocoes">Promoções</Link></li>
+            <li><Link href="/#contato">Contato</Link></li>
           </ul>
         </div>
 
@@ -45,10 +46,18 @@ export default function Footer() {
           </div>
 
           <div className={styles.socials}>
-            <FiInstagram />
-            <FiFacebook />
-            <FiTwitter />
-            <FiYoutube />
+            <Link href="https://www.instagram.com/ivoryan.01" target="_blank">
+              <FiInstagram />
+            </Link>
+            <Link href="https://wa.me/5563992644269?text=OI%C3%A1%20Ryan%20,%20acabei%20vendo%20seu%20perfil%20no%20github%20e%20queria%20conversar!" target="_blank">
+              <FaWhatsapp />
+            </Link>
+            <Link href="https://t.me/ivo_ryan" target="_blank">
+             <FaTelegramPlane />
+            </Link>            
+            <Link href="https://www.linkedin.com/in/ivo-bastos-a0a8262a7/" target="_blank">
+              <FiLinkedin />
+            </Link>
           </div>
         </div>
       </div>
