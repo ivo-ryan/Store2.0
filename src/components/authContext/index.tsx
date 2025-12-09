@@ -156,7 +156,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   if (!isMounted) {
     return (
       <>
-        <div className={styles.grid}>{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
+        <div className={styles.grid} >{ Array.from({ length: 10 }).map((_, i) =><SkeletonCard key={i} />) }</div>
       </>
     )
   }
