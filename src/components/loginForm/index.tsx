@@ -52,13 +52,13 @@ export default function LoginPage() {
 
         <div className={styles.field}>
           <label>Email</label>
-          <input type="email" {...register("email")} />
+          <input type="email" {...register("email")} aria-label="email"/>
           {errors.email && <span>{errors.email.message}</span>}
         </div>
 
         <div className={styles.field}>
           <label>Senha</label>
-          <input type="password" {...register("password")} />
+          <input type="password" {...register("password")} aria-label="senha"/>
           {errors.password && <span>{errors.password.message}</span>}
         </div>
 

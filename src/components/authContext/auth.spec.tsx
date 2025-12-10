@@ -121,12 +121,11 @@ describe("AuthProvider", () => {
 
   describe("Carrinho", () => {
     it("busca produtos do carrinho quando refreshCart é chamado", async () => {
-        sessionStorage.setItem("token", "abc123");
-      mockGetProducts.mockResolvedValueOnce([{ id: 1, name: "Produto X" }]);
 
-
+      sessionStorage.setItem("token", "abc123");
+      
       let contextValue!: any;
-
+      
       render(
         <AuthProvider>
           <AuthContext.Consumer>
@@ -137,11 +136,13 @@ describe("AuthProvider", () => {
           </AuthContext.Consumer>
         </AuthProvider>
       );
+      
+      mockGetProducts.mockResolvedValueOnce([{ id: 1, name: "Produto X" }]);
 
       act(() => {
         contextValue.setCartChange((prev: boolean) => !prev);
-      });
-
+      });      
+      
       await waitFor(() => {
         expect(sessionStorage.getItem("token")).toBe("abc123")
         expect(mockGetProducts).toHaveBeenCalled();
@@ -151,9 +152,7 @@ describe("AuthProvider", () => {
       });
     });
 
-    // ------------------------------------------------------------------------------
-    // 4.1) ADD PRODUCT
-    // ------------------------------------------------------------------------------
+
     it("adiciona produto ao carrinho", async () => {
       sessionStorage.setItem("token", "abc123");
 
@@ -179,9 +178,6 @@ describe("AuthProvider", () => {
       expect(mockAddProduct).toHaveBeenCalledWith(10, 1);
     });
 
-    // ------------------------------------------------------------------------------
-    // 4.2) REMOVE PRODUCT
-    // ------------------------------------------------------------------------------
     it("remove produto do carrinho", async () => {
       sessionStorage.setItem("token", "abc123");
 
@@ -208,9 +204,7 @@ describe("AuthProvider", () => {
     });
   });
 
-  // ================================================================================
-  // 5) TESTE DO REGISTER USER
-  // ================================================================================
+
   describe("Register", () => {
     it("registra usuário corretamente", async () => {
       mockRegister.mockResolvedValueOnce({

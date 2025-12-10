@@ -35,7 +35,6 @@ export default function RegisterForm ({ setIsRegisted }:props ) {
     const handleFormSubmit = async  ({name, email, password}: FormDataProps) => {
         try {
           const res = await registerUser(name, email , password);
-          console.log(res.register)
           if(res.register) {
             return setIsRegisted(false);
           }

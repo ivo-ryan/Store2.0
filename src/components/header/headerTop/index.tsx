@@ -42,7 +42,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
           className={styles.hamburger}
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <FiX /> : <FiMenu />}
+          {menuOpen ? <FiX data-testid="icon-close"/> : <FiMenu data-testid="icon-menu"/>}
         </div>
 
       </div>
