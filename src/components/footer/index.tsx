@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { FiInstagram,FiSend, FiLinkedin } from "react-icons/fi";
-import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (

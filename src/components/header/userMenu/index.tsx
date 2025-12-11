@@ -27,7 +27,7 @@ export default function UserMenu({ isLogged, onLogout }: Props) {
       {isLogged && (
        <>
          <Link href="/orders" className={styles.item}>Meus Pedidos</Link>
-          <button className={styles.item} onClick={onLogout}>
+          <button className={styles.item} onClick={onLogout} >
             Logout
           </button>
 

@@ -26,7 +26,7 @@ export default function MobileHeader ({ handleLogout , menuOpen, setMenuOpen }: 
     return (
     <>
 
-              <nav
+      <nav
         className={`${styles.sideMenu} ${
           menuOpen ? styles.open : styles.closed
         }`}

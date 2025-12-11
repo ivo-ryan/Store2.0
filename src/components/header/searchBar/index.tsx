@@ -53,7 +53,7 @@ export default function SearchBar({
         }}
         
       />
-      <button type="submit" >
+      <button type="submit">
         <FiSearch />
       </button>
       

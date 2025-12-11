@@ -48,22 +48,22 @@ export default function ProductFilter() {
   return (
     <div className={styles.container}>
       <SearchBar onSearch={handleSearchChange} onSubmitSearch={handleSubmitSearch} />
-    {
-      filtered.length > 0 &&
+   {(filtered.length > 0 || notFound) && (
+  <div className={styles.grid} onClick={() => setFiltered([])}>
+    <div className={styles.scrollBox}>
 
-      <div className={styles.grid} onClick={() => setFiltered([])}>
-        <div className={styles.scrollBox}>
-          {filtered.length > 0 && !notFound && (
-            filtered.map((p) => <ProductSearch key={p.id} product={p} />)
-          )}
+      {filtered.length > 0 && !notFound &&
+        filtered.map((p) => <ProductSearch key={p.id} product={p} />)}
 
-          {notFound && <div className={styles.noResult}>
-              <img src="/error.gif" alt="" />
-              <p>Nenhum produto encontrado</p>
-             </div>}
+      {notFound && (
+        <div className={styles.noResult}>
+          <img src="/error.gif" alt="error gif" />
+          <p>Nenhum produto encontrado</p>
         </div>
-      </div>
-    }
+      )}
+    </div>
+  </div>
+)}
     </div>
   );
 }

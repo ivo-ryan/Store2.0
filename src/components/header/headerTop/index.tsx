@@ -54,7 +54,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
    </div>
        {
               isOpen === "Open" && 
-    <div className={styles.overlay} onClick={() => setIsOpen("Close")}></div>
+    <div className={styles.overlay} onClick={() => setIsOpen("Close")} data-testid="overlay"></div>
             }
     
       
@@ -64,6 +64,7 @@ export default function HeaderTop({search= true}:{ search?: boolean }) {
           <FiUser
             className={styles.userIcon}
             onClick={() => setIsOpen( isOpen === "Open" ? "Close" : "Open" )}
+           data-testid="user"
           />
           <div className={`
               ${
