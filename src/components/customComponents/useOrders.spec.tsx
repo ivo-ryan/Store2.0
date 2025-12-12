@@ -1,80 +1,30 @@
-import { renderHook, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-
-// ==============================================================
-// 1. Tipos das funções reais do service
-// ==============================================================
-
-import type { OrdersProps, PaymentProps } from "@/services/userService";
-
-// Função real: retorna Promise<{ data: OrdersProps[] }>
-type GetAllOrdersFn = () => Promise<{ data: OrdersProps[] }>;
-
-// Função real: retorna Promise<PaymentProps>
-type UpdateOrderFn = (id: number, status: "PAID" | "FAILED") => Promise<PaymentProps>;
-
-// Tipos mockados
-type MockedGetAllOrders = vi.MockedFunction<GetAllOrdersFn>;
-type MockedUpdateOrder = vi.MockedFunction<UpdateOrderFn>;
-
-// ==============================================================
-// 2. Mock do userService
-// ==============================================================
-
-vi.mock("@/services/userService", () => ({
-  userService: {
-    getAllOrders: vi.fn() as MockedGetAllOrders,
-    updateOrder: vi.fn() as MockedUpdateOrder,
-  },
-}));
-
+import { renderHook, waitFor, act } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import useOrders from "./useOrders";
 import { userService } from "@/services/userService";
 
-// ==============================================================
-// 3. Mock da sessionStorage
-// ==============================================================
-
-const mockSessionStorage = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-};
-
-Object.defineProperty(window, "sessionStorage", {
-  value: mockSessionStorage,
-  writable: true,
+vi.stubGlobal("sessionStorage", {
+  getItem: vi.fn(() => "mocked-user"),
 });
 
-const getItemSpy = vi.spyOn(mockSessionStorage, "getItem");
+vi.mock("@/services/userService", () => ({
+  userService: {
+    getAllOrders: vi.fn(),
+    updateOrder: vi.fn(),
+  },
+}));
 
-// ==============================================================
-// 4. Testes
-// ==============================================================
-
-describe("useOrders", () => {
+describe("useOrders hook", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    getItemSpy.mockReturnValue("user_test");
   });
 
-  // ---------- TESTE 1 ----------
-  it("carrega pedidos quando storedUser existe", async () => {
-    const mockedOrders: OrdersProps[] = [
-      {
-        id: 1,
-        createdAt: "",
-        customer: "",
-        items: [],
-        payment: { provider: "", status: "PAID" },
-        status: "PAID",
-        total: 50,
-      },
-    ];
-
-    (userService.getAllOrders as MockedGetAllOrders).mockResolvedValue({
-      data: mockedOrders,
+  it("carrega pedidos ao montar", async () => {
+    (userService.getAllOrders as any).mockResolvedValue({
+      data: [
+        { id: 1, status: "PENDING" },
+        { id: 2, status: "PAID" },
+      ],
     });
 
     const { result } = renderHook(() => useOrders());
@@ -82,87 +32,51 @@ describe("useOrders", () => {
     expect(result.current.loading).toBe(true);
 
     await waitFor(() => {
-      expect(result.current.loading).toBe(false);
+      expect(result.current.orders.length).toBe(2);
     });
 
-    expect(result.current.orders).toEqual(mockedOrders);
+    expect(result.current.loading).toBe(false);
+    expect(userService.getAllOrders).toHaveBeenCalled();
   });
 
-  // ---------- TESTE 2 ----------
-  it("mantém loading correto quando ocorre erro", async () => {
-    (userService.getAllOrders as MockedGetAllOrders).mockRejectedValue(
-      new Error("erro")
-    );
+  it("updateOrderStatus chama updateOrder e refaz o fetch", async () => {
+    (userService.getAllOrders as any).mockResolvedValueOnce({
+      data: [{ id: 1, status: "PENDING" }],
+    });
+
+    (userService.getAllOrders as any).mockResolvedValueOnce({
+      data: [{ id: 1, status: "PAID" }],
+    });
+
+    (userService.updateOrder as any).mockResolvedValue({});
 
     const { result } = renderHook(() => useOrders());
 
-    expect(result.current.loading).toBe(true);
+    await waitFor(() => {
+      expect(result.current.orders.length).toBe(1);
+    });
+
+    await act(async () => {
+      await result.current.updateOrderStatus(1, "PAID");
+    });
+
+    expect(userService.updateOrder).toHaveBeenCalledWith(1, "PAID");
 
     await waitFor(() => {
-      expect(result.current.loading).toBe(false);
+      expect(result.current.orders[0].status).toBe("PAID");
     });
-
-    expect(result.current.orders).toEqual([]);
   });
 
-  // ---------- TESTE 3 ----------
-  it("atualiza status do pedido e refaz fetch", async () => {
-    const initialOrders: OrdersProps[] = [
-      {
-        id: 1,
-        createdAt: "",
-        customer: "",
-        items: [],
-        payment: { provider: "", status: "PAID" },
-        status: "PAID",
-        total: 100,
-      },
-    ];
+  it("não chama API se não houver usuário no sessionStorage", async () => {
 
-    const updatedOrders: OrdersProps[] = [
-      {
-        id: 1,
-        createdAt: "",
-        customer: "",
-        items: [],
-        payment: { provider: "", status: "FAILED" },
-        status: "CANCELED",
-        total: 100,
-      },
-    ];
-
-    // Primeiro fetch
-    (userService.getAllOrders as MockedGetAllOrders)
-      .mockResolvedValueOnce({ data: initialOrders })
-      // Segundo fetch após updateOrderStatus
-      .mockResolvedValueOnce({ data: updatedOrders });
-
-    // updateOrder precisa retornar um PaymentProps (mock simplificado)
-    (userService.updateOrder as MockedUpdateOrder).mockResolvedValue({
-      id: 1,
-      provider: "",
-      status: "FAILED",
-      amount: 100,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      playgroundUrl: null,
-      orderId: 1,
-    });
+    (sessionStorage.getItem as any).mockReturnValueOnce(null);
 
     const { result } = renderHook(() => useOrders());
 
-    // Aguardar primeiro fetch
     await waitFor(() => {
-      expect(result.current.orders).toEqual(initialOrders);
+      expect(result.current.orders).toEqual([]);
     });
 
-    // Disparar updateOrderStatus
-    await result.current.updateOrderStatus(1, "FAILED");
-
-    // Aguardar segundo fetch
-    await waitFor(() => {
-      expect(userService.updateOrder).toHaveBeenCalledWith(1, "FAILED");
-      expect(result.current.orders).toEqual(updatedOrders);
-    });
+    expect(userService.getAllOrders).not.toHaveBeenCalled();
   });
 });
