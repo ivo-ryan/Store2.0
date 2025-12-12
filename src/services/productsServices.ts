@@ -5,7 +5,7 @@ export type ProductType = {
     id: number;
     description: string;
     price: number;
-    oldPrice: number;
+    oldPrice?: number;
     featured: boolean;
     isNew: boolean;
     rating: number;

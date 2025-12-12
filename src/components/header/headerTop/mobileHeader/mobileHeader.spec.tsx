@@ -86,7 +86,7 @@ describe("MobileHeader Component", () => {
 
   it("deve fechar o menu ao clicar no ícone FiX (close)", () => {
     const setMenuOpenMock = vi.fn();
-    const { container } = renderMobileHeader({ menuOpen: true, setMenuOpen: setMenuOpenMock });
+    renderMobileHeader({ menuOpen: true, setMenuOpen: setMenuOpenMock });
 
     const menuHeader = screen.getByText("Menu");
     const parent = menuHeader.parentElement;

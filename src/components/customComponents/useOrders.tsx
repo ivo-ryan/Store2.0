@@ -13,9 +13,8 @@ export default function useOrders () {
     const updateOrderStatus = async (paymentId: number , status: "PAID" | "FAILED") => {
         if(!storedUser) return;
 
-        const res = await userService.updateOrder(paymentId, status);
+        await userService.updateOrder(paymentId, status);
         setChange(prev => !prev);
-        console.log(res);
 
     }
 
@@ -28,6 +27,8 @@ export default function useOrders () {
                 setLoading(true);
                 const res = await userService.getAllOrders();
                 setOrders(res.data);
+            }catch(err){
+                console.error(err)
             }finally{
                 setLoading(false);
             }

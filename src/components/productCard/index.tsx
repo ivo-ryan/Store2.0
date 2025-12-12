@@ -65,7 +65,7 @@ export default function ProductCard({
         </div>
       </Link>
 
-      <button className={styles.cartButton} onClick={() => addProductInCart(id)}>
+      <button className={styles.cartButton} onClick={() => addProductInCart(id)} >
         <FaCartPlus />
       </button>
     </div>

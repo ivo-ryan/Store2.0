@@ -3,14 +3,13 @@ import OrderCard from "./index";
 import { describe, expect, it, vi } from "vitest";
 import { OrdersProps } from "@/services/userService";
 
-// Mock OrderItem
+
 vi.mock("../orderItem", () => ({
   default: ({ item }: any) => (
     <div data-testid="order-item">{item.name}</div>
   ),
 }));
 
-// Mock OrderStatusBadge
 vi.mock("../orderStatus", () => ({
   default: ({ status }: any) => (
     <span data-testid="status-badge">{status}</span>
@@ -18,18 +17,6 @@ vi.mock("../orderStatus", () => ({
 }));
 
 describe("OrderCard Component", () => {
-
-    function createOrderMock(partial: Partial<OrdersProps> = {}): OrdersProps {
-  return {
-    id: 1,
-    status: "PENDING",
-    createdAt: new Date().toISOString(),
-    total: 100,
-    items: [],
-    ...partial,
-  } as OrdersProps;
-}
-
 
   const mockOrder: any = { 
     id: 12,

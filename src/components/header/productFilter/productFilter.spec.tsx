@@ -70,7 +70,7 @@ describe("ProductFilter", () => {
     expect(screen.queryByTestId("mock-product")).not.toBeInTheDocument();
   });
 
-it("mostra mensagem de nenhum produto encontrado somente após clicar no botão de buscar", async () => {
+it("mostra uma div vazia de nenhum produto encontrado somente após clicar no botão de buscar", async () => {
     (useProduct as any).mockReturnValue({ products: mockProducts });
 
   render(<ProductFilter />);
@@ -79,7 +79,7 @@ it("mostra mensagem de nenhum produto encontrado somente após clicar no botão 
 
   fireEvent.change(input, { target: { value: "xxxxxx" } });
 
-  expect(screen.getByText(/nenhum produto encontrado/i)).toBeInTheDocument();
+  expect(screen.getByTestId("no-result")).toBeInTheDocument();
 });
 
   it("redireciona ao clicar no botão de submit", () => {

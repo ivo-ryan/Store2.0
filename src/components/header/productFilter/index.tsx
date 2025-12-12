@@ -56,9 +56,7 @@ export default function ProductFilter() {
         filtered.map((p) => <ProductSearch key={p.id} product={p} />)}
 
       {notFound && (
-        <div className={styles.noResult}>
-          <img src="/error.gif" alt="error gif" />
-          <p>Nenhum produto encontrado</p>
+        <div className={styles.noResult} data-testid="no-result">
         </div>
       )}
     </div>

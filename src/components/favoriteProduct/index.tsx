@@ -10,7 +10,7 @@ export default function FavoriteProduct ({id}:{id: string}) {
 
     const { productIsFavorite , handleClickFavorite, handleClickRemoveFavorite, favoriteLoading , storedUser} = useFavorite(id);
 
-    if(favoriteLoading) return <div ><Spinner/></div>
+    if(favoriteLoading) return <div data-testid="spinner"><Spinner /></div>
 
     const addProductAsFavorite = (id: number) => {
         if(!storedUser) return ;
@@ -24,11 +24,11 @@ export default function FavoriteProduct ({id}:{id: string}) {
             {
                     productIsFavorite ? 
                     <button className={styles.isFavorite} onClick={() => handleClickRemoveFavorite(id)}>
-                        <FaHeart />
+                        <FaHeart data-testid="fa-heart-icon"/>
                     </button> 
                     : 
                     <button className={styles.favorite} onClick={() => addProductAsFavorite(Number(id))}>
-                        <FiHeart />
+                        <FiHeart data-testid="fi-heart-icon"/>
                     </button>
                 }
         </>

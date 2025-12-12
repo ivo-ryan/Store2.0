@@ -22,6 +22,8 @@ export default function useFavorites (){
             const res = await userService.getAllFavorites();   
             setFavorites(res.data);
 
+        }catch(err){
+            console.error(err)
         }finally{
             setLoading(false);
         }
