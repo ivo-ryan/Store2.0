@@ -2,9 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Cart from "./index";
 
-// ----------------------
-// Mocks dos filhos
-// ----------------------
 vi.mock("./cartItem", () => ({
   default: () => <div data-testid="cart-item" />,
 }));
@@ -21,9 +18,6 @@ vi.mock("./emptyCart", () => ({
   default: () => <div data-testid="empty-cart" />,
 }));
 
-// ----------------------
-// Mocks dos hooks
-// ----------------------
 const mockUseCart = vi.fn();
 const mockUseAuth = vi.fn();
 
