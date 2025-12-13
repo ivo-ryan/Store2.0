@@ -5,7 +5,7 @@ Plataforma de E-commerce Full Stack com foco em fluxo de compra, arquitetura e t
 
 [
    <img src="./shopflow.gif" alt="Gif do projeto "/>
-](https://projeto-12.vercel.app/)
+](https://shop-flow-sandy.vercel.app/)
 
 <br/>
 
