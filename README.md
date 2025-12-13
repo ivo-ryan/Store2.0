@@ -115,17 +115,29 @@ O projeto foi criado como vitrine técnica para demonstrar domínio em frontend 
  • Os testes foram escritos visando confiabilidade, legibilidade e isolamento de responsabilidades.
 
  <br/>
+ 
+## Ambiente
+<br/>
 
- ## Como Utilizar o Projeto 
-  
-   ### instalar dependências
-  ``npm install``
-  
-  ### rodar o projeto
-  ``npm run dev``
-  
-  ### rodar os testes
-  ```npm run test```
+**1. Clonar o Repositório**
+```
+git clone https://github.com/ivo-ryan/projeto_12
+```
+
+**2. Instalar Dependências**
+```
+npm install
+```
+**3. Executar o Projeto**
+```
+npm run dev
+```
+**4. Rodar os Testes**
+
+```
+npx vitest
+```
+
   
   <br/>
 
@@ -142,5 +154,5 @@ O projeto foi criado como vitrine técnica para demonstrar domínio em frontend 
 
 ## 👨‍💻 Autor
 
-  • Ivo Ryan <br/>
-  • Desenvolvedor Full Stack JavaScript
+ ### • Ivo Ryan <br/>
+ ### • Desenvolvedor Full Stack JavaScript
