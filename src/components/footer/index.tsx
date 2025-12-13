@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.column}>
-          <h3>StreamLy</h3>
+          <h3>ShopFlow</h3>
           <p>
             Tecnologia, som e inovação.  
             Explore o futuro com a StreamLy.
@@ -45,7 +45,7 @@ export default function Footer() {
             </button>
           </div>
 
-          <div className={styles.socials}>
+          <div className={styles.socials} id="contato">
             <Link href="https://www.instagram.com/ivoryan.01" target="_blank">
               <FiInstagram />
             </Link>
@@ -63,7 +63,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.copy}>
-        <p>© {new Date().getFullYear()} StreamLy. Todos os direitos reservados.</p>
+        <p>© {new Date().getFullYear()} ShopFlow. Todos os direitos reservados.</p>
       </div>
     </footer>
   );
