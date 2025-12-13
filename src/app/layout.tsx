@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Store",
+  title: "ShopFlow",
   description: "Generated my store app",
 };
 
