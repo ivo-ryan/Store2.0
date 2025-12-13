@@ -2,6 +2,7 @@
 <br/>
 Plataforma de E-commerce Full Stack com foco em fluxo de compra, arquitetura e testes
 <br/>
+<br/>
 
 [
    <img src="./shopflow.gif" alt="Gif do projeto "/>
