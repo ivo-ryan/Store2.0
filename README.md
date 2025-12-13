@@ -3,7 +3,7 @@
 Plataforma de E-commerce Full Stack com foco em fluxo de compra, arquitetura e testes
 
 [
-   <img src="./movie-app.gif" alt="Gif do projeto "/>
+   <img src="./shopflow.gif" alt="Gif do projeto "/>
 ](https://projeto-12.vercel.app/)
 
 <br/>
