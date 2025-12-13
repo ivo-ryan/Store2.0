@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 ShopFlow
+<br/>
+Plataforma de E-commerce Full Stack com foco em fluxo de compra, arquitetura e testes
 
-## Getting Started
+[
+   <img src="./movie-app.gif" alt="Gif do projeto "/>
+](https://projeto-12.vercel.app/)
 
-First, run the development server:
+<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 Descrição curta 
+
+ShopFlow é uma aplicação full stack de e-commerce desenvolvida com foco em boas práticas, arquitetura limpa e testes automatizados, simulando um fluxo real de compra — do catálogo ao pedido final.
+
+O projeto foi criado como vitrine técnica para demonstrar domínio em frontend moderno, integração com APIs, gestão de estado, testes e boas decisões de código.
+
+<br/>
+
+## 🚀 Funcionalidades
+
+ • Autenticação de usuário
+  
+ • Listagem de produtos por categoria
+  
+ • Visualização de produto individual
+  
+ • Carrinho de compras
+  
+ • Adição e remoção de produtos no carrinho
+  
+ • Resumo do pedido
+  
+ • Finalização de compra
+  
+ • Criação e listagem de pedidos
+  
+ • Simulação de pagamento
+  
+ • Persistência de estado com Session Storage
+  
+ • Fluxo reativo entre componentes via eventos customizados
+
+ <br/>
+
+## 🧠 Diferenciais Técnicos
+
+ • Arquitetura baseada em services
+  
+ • Hooks customizados para regras de negócio
+  
+ • Separação clara entre UI e lógica
+  
+ • Comunicação entre componentes via eventos do browser
+  
+ • Código tipado com TypeScript
+  
+ • Testes automatizados completos com Vitest
+  
+ • Componentes testados de forma isolada
+  
+ • Mock de APIs e dependências externas
+  
+ • Código escrito com foco em manutenibilidade e escalabilidade
+
+ <br/>
+
+## 🛠️ Tecnologias Utilizadas
+
+### Frontend
+
+ • Next.js (App Router)
+  
+ • React
+  
+ • TypeScript
+  
+ • SCSS Modules
+  
+ • React Icons
+  
+ ### Backend / Integrações
+  
+ • API REST
+  
+ • Axios
+  
+ • Prisma
+  
+ • PostgreSQL
+  
+ • Testes
+  
+ • Vitest
+  
+ • Testing Library
+  
+ • Mocks de serviços e hooks
+
+ <br/>
+
+## 🧪 Testes Automatizados
+  
+ • O projeto possui cobertura de testes para:
+  
+ • Hooks customizados
+  
+ • Componentes de UI
+  
+ • Fluxos de carrinho
+  
+ • Criação de pedidos
+  
+ • Estados de loading, vazio e usuário não autenticado
+  
+ • Os testes foram escritos visando confiabilidade, legibilidade e isolamento de responsabilidades.
+
+ <br/>
+ 
+## Ambiente
+<br/>
+
+**1. Clonar o Repositório**
+```
+git clone https://github.com/ivo-ryan/projeto_12
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2. Instalar Dependências**
+```
+npm install
+```
+**3. Executar o Projeto**
+```
+npm run dev
+```
+**4. Rodar os Testes**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npx vitest
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  
+  <br/>
 
-## Learn More
+## 🎯 Objetivo do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+  O ShopFlow foi desenvolvido como um projeto de estudo avançado e portfólio, com o objetivo de:
+  
+  Demonstrar capacidade técnica para vagas de desenvolvimento frontend/full stack
+  
+  Simular desafios reais do mercado
+  
+  Aplicar boas práticas usadas em ambientes profissionais
+  <br/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👨‍💻 Autor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ ### • Ivo Ryan <br/>
+ ### • Desenvolvedor Full Stack JavaScript
