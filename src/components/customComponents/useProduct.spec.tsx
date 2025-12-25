@@ -96,7 +96,6 @@ describe("useProduct hook", () => {
     expect(dispatchMock).toHaveBeenCalled();
   });
 
-  // -------------------------------------------------------
   it("updateProduct é chamado quando evento productChange é disparado (capturando handler)", async () => {
     (sessionStorage.getItem as any).mockReturnValue("1");
 
